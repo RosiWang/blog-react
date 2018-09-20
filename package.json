@@ -1,0 +1,38 @@
+{
+  "author": "Rosi",
+  "license": "ISC",
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "react base project",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack-dev-server --config webpack.config.js",
+    "build": "webpack --config webpack.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "css-loader": "^1.0.0",
+    "draft-js": "^0.10.5",
+    "html-webpack-banner-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.5.1",
+    "react-dom": "^16.5.1",
+    "react-draft-wysiwyg": "^1.12.13",
+    "react-router-dom": "^4.3.1",
+    "react-transform-hmr": "^1.0.4",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.0",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-rc.1",
+    "@babel/plugin-transform-react-jsx": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
+    "babel-loader": "^8.0.0-beta.0",
+    "babel-plugin-import": "^1.8.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "webpack-cli": "^3.1.0"
+  }
+}
