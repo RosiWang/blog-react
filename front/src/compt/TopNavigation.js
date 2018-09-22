@@ -55,7 +55,7 @@ export default class TopNavigation extends Component{
                     <div style={{textAlign:'center',paddingTop:16}}>
                         <GeneralButton label='Login' onClick={this.loginHandler}/>
                         <span style={{paddingLeft:16}}>
-                           <GeneralButton label='Learn More' style={{ border: '3px solid',borderColor:'#d9d7e1'}}
+                           <GeneralButton label='Learn More' style={{ border: '3px solid',borderColor:'#eae8f2'}}
                                      onClick={this.loginHandler}/>
                     </span>
                     </div>
@@ -66,11 +66,13 @@ export default class TopNavigation extends Component{
                         width:'80%',
                         paddingLeft:'10%'}}>
                         <h2 style={{color:'#888690',paddingBottom:16}}>
-                            Introducing the ultimate mobile app for doing stuff with your phone
+                            第一个正式开发的博客
                         </h2>
                         <hr style={{height:1}} color='#d9d7d6'/>
                         <p style={{color:'#a09ea8',paddingTop:24,paddingBottom:24}}>
-                            Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare adipiscing nunc adipiscing. Condimentum turpis massa.
+                           很早就想搭建自己的博客，买了域名服务器，找了很多模板，看着都挺复杂的T_T
+                            现在这个是我最喜欢的模板布局，简单大气，看着就很舒服，这次要不是工头说，我应该还是不会尝试去写，所以，还得谢谢他^_^
+                            后面会加上数据库的相关功能，慢慢来吧，貌似也没有那么复杂，哈哈
                         </p>
                     </div>
                     <img src={boxImg} style={{width:'100%',height:230,borderRadius:6}} />

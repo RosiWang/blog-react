@@ -14,13 +14,13 @@ export default class InfoOverviewContainer extends Component{
         data:[
             {
                 img:img1,
-                title:'Sed lorem adipiscing',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.'
+                title:'没想好这里放啥',
+                desc:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
             },
             {
                 img:img2,
-                title:'Sed lorem adipiscing',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.'
+                title:'没想好这里放啥',
+                desc:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
             }
         ]
     }

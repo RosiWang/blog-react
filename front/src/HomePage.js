@@ -28,12 +28,12 @@ export default class Greeter extends Component{
                         marginBottom:24
                     }}>
                         <div style={{paddingTop:16}}>
-                            <h2>Sign up for beta access</h2>
-                            <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
+                            <h2>这里会加上搜索</h2>
+                            <p>Nothing, this is a placeholder</p>
                         </div>
-                        <input style={{width:240,height:40}} placeholder="Email Address"/>
+                        <input style={{width:240,height:40}} placeholder="rosiwang@163.com"/>
                         <span style={{paddingLeft:16}}>
-                            <GeneralButton style={{ border: '3px solid',borderColor:'#d9d7e1'}} label='Search'/>
+                            <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Search'/>
                       </span>
                     </div>
 

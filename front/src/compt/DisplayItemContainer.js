@@ -21,26 +21,26 @@ export default class DisplayContainer extends Component{
         itemData:[
             {
                 icon:icon1,
-                title:'Magna etiam',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.',
+                title:'日志标题',
+                desc:'This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.',
                 direction:'bottom'
             },
             {
                 icon:icon2,
-                title:'Ipsum dolor',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.',
+                title:'日志标题',
+                desc:'This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.',
                 direction:'left'
             },
             {
                 icon:icon3,
-                title:'33333333',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.',
+                title:'日志标题',
+                desc:'This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.',
                 direction:'right'
             },
             {
                 icon:icon4,
-                title:'44444',
-                desc:'Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.',
+                title:'日志标题',
+                desc:'This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.',
                 direction:'up'
             }
         ]
