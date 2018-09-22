@@ -13,7 +13,7 @@ export default class DisplayItem extends Component{
         return(
             <div style={{
                 padding:16,
-                width:330,
+                width:'45%',
                 border:'3px solid',
                 borderColor:'#d9d7d6',
                 borderWidth:lineDirection
