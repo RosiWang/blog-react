@@ -1,7 +1,7 @@
 
 import React,{Component} from 'react'
 import topImg from '../image/topImg.jpg'
-import LoginBtn from './GeneralButton'
+import GeneralButton from './GeneralButton'
 import boxImg from '../image/pic01.jpg'
 
 const topImgStyle = {
@@ -20,9 +20,7 @@ const topText = {
     color:'#fff'
 };
 
-const opacityBtnStyle={
-    opacity:0.4
-}
+
 
 const boxImgStyle = {
     width:'90%',
@@ -55,9 +53,9 @@ export default class TopNavigation extends Component{
                         <p>Welcome to my world，It's great that you are here..</p>
                     </div>
                     <div style={{textAlign:'center',paddingTop:16}}>
-                        <LoginBtn label='Login' onClick={this.loginHandler}/>
+                        <GeneralButton label='Login' onClick={this.loginHandler}/>
                         <span style={{paddingLeft:16}}>
-                           <LoginBtn label='Learn More' style={opacityBtnStyle}
+                           <GeneralButton label='Learn More' style={{ border: '3px solid',borderColor:'#d9d7e1'}}
                                      onClick={this.loginHandler}/>
                     </span>
                     </div>
@@ -70,7 +68,7 @@ export default class TopNavigation extends Component{
                         <h2 style={{color:'#888690',paddingBottom:16}}>
                             Introducing the ultimate mobile app for doing stuff with your phone
                         </h2>
-                        <hr/>
+                        <hr style={{height:1}} color='#d9d7d6'/>
                         <p style={{color:'#a09ea8',paddingTop:24,paddingBottom:24}}>
                             Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare adipiscing nunc adipiscing. Condimentum turpis massa.
                         </p>

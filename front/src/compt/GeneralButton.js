@@ -1,11 +1,13 @@
 import React,{Component} from 'react'
 
+
 const buttonStyle={
     width: 176,
     height: 44,
-    lineHeight: '50px',
+    border: '3px solid',
+    borderColor:'#ffffff',
+    lineHeight: '44px',
     backgroundColor: '#fff',
-    border: '#fff',
     display: 'inline-block',
     borderRadius:6,
     fontSize: 20,
