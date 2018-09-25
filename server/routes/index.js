@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../config/db');
 
 /**
  * 跨域设置
@@ -20,9 +21,17 @@ router.get('/', function(req, res, next) {
     // res.status(200).send({id:req.params.id, name: req.params.password});
     // res.status(404).send('Sorry, we cannot find that!');
     // res.send(req.url);
-    var usermodel={name:'rosi',age:28};
-    res.json(usermodel);
   console.log('get path /....');
+    db.query("select * from admin_db",function(err,rows){
+        if(err){
+            // res.render("users.ejs",{title:"用户列表",datas:[]});
+            console.log('err:',err);
+        }else {
+            // res.render("users.ejs",{title:"用户列表",datas:rows});
+            console.log('data:',rows);
+            res.json(rows);
+        }
+    });
 });
 
 module.exports = router;

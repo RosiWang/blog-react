@@ -18,7 +18,7 @@ export default class Greeter extends Component{
             headers: {
                 'Accept':'application/json,text/plain,*/*'
             }
-        }).then(function(data){
+        }).then(response => response.json()).then(data =>{
             console.log("get success:",data);
         });
     }
