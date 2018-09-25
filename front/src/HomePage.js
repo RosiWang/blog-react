@@ -1,13 +1,27 @@
 import React,{Component} from 'react'
-import config from './data.json'
-import styles from './style/global.css';//导入
 import TopNavigation from './compt/TopNavigation'
 import DisplayContainer from './compt/DisplayItemContainer'
 import InfoOverviewContainer from './compt/InfoOverviewContainer'
 import GeneralButton from "@/src/compt/GeneralButton";
+import 'whatwg-fetch'
 
+// const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
+const url = 'http://localhost:3089/';
 
 export default class Greeter extends Component{
+
+    componentDidMount(){
+        console.log('component did mount');
+        fetch(url, {
+            method: "GET",
+            mode: "cors",
+            headers: {
+                'Accept':'application/json,text/plain,*/*'
+            }
+        }).then(function(data){
+            console.log("get success:",data);
+        });
+    }
 
     render() {
         console.log('greeter start..');

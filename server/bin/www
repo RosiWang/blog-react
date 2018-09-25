@@ -8,11 +8,12 @@ var app = require('../app');
 var debug = require('debug')('server:server');
 var http = require('http');
 
+
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '8089');
+var port = normalizePort(process.env.PORT || '3089');
 app.set('port', port);
 
 /**
@@ -24,6 +25,11 @@ var server = http.createServer(app);
 /**
  * Listen on provided port, on all network interfaces.
  */
+
+app.post('/', function (req, res, next) {
+    console.log(req.body);//打印出请求体的信息
+    res.send('app server success 666!');//发出响应信息，显示在浏览器上。
+});
 
 server.listen(port);
 server.on('error', onError);
