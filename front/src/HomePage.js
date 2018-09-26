@@ -4,7 +4,7 @@ import DisplayContainer from './compt/DisplayItemContainer'
 import InfoOverviewContainer from './compt/InfoOverviewContainer'
 import GeneralButton from "@/src/compt/GeneralButton";
 import 'whatwg-fetch'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route,Redirect,Switch   } from 'react-router-dom'
 import LoginPage from './compt/LoginPage'
 
 
@@ -40,9 +40,10 @@ const url = 'http://localhost:3089/';
 
      render() {
         const {isLogin} = this.state;
+        console.log('login:',isLogin);
         if(isLogin){
             return  <BrowserRouter>
-                <Route path to="/app" component={LoginPage}/>
+                <Redirect exact path to="users" component={LoginPage}/>
             </BrowserRouter>
         }
         return (
