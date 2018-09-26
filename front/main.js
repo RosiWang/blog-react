@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Greeter from './src/HomePage';
+import HomePage from './src/HomePage';
 
 console.log('main start..');
-ReactDOM.render(<Greeter />, document.getElementById('root'))
+ReactDOM.render(<HomePage />, document.getElementById('root'))

@@ -3,6 +3,7 @@ import React,{Component} from 'react'
 import topImg from '../image/topImg.jpg'
 import GeneralButton from './GeneralButton'
 import boxImg from '../image/pic01.jpg'
+import TransparentButton from './TransparentButton'
 
 const topImgStyle = {
     width:'100%',
@@ -20,8 +21,6 @@ const topText = {
     color:'#fff'
 };
 
-
-
 const boxImgStyle = {
     width:'90%',
     background:'#fff',
@@ -32,7 +31,9 @@ const boxImgStyle = {
     top:450
 }
 
-export default class TopNavigation extends Component{
+export  default class TopNavigation extends Component{
+
+
     constructor(props){
         super(props);
         this.state = {
@@ -40,23 +41,31 @@ export default class TopNavigation extends Component{
         };
     }
 
-    loginHandler = ()=>{
-        console.log('login click');
+    topLeftBtnClick = ()=>{
+        console.log('left click');
+    }
+
+    topRightBtnClick = ()=>{
+        console.log('right click');
     }
 
     render(){
+
         return(
             <div >
                 <div style={topImgStyle}>
+                    <div style={{float:'right',paddingTop:30,paddingRight:48}}>
+                        <TransparentButton label='站长登录' onClick={this.props.loginClick} />
+                    </div>
                     <div style={topText}>
                         <h2>RosiWorld</h2>
                         <p>Welcome to my world，It's great that you are here..</p>
                     </div>
                     <div style={{textAlign:'center',paddingTop:16}}>
-                        <GeneralButton label='Login' onClick={this.loginHandler}/>
+                        <GeneralButton label='关于我' onClick={this.topLeftBtnClick}/>
                         <span style={{paddingLeft:16}}>
-                           <GeneralButton label='Learn More' style={{ border: '3px solid',borderColor:'#eae8f2'}}
-                                     onClick={this.loginHandler}/>
+                           <GeneralButton label='近期日志' style={{ border: '3px solid',borderColor:'#eae8f2'}}
+                                          onClick={this.topRightBtnClick}/>
                     </span>
                     </div>
                 </div>
@@ -70,7 +79,7 @@ export default class TopNavigation extends Component{
                         </h2>
                         <hr style={{height:1}} color='#d9d7d6'/>
                         <p style={{color:'#a09ea8',paddingTop:24,paddingBottom:24}}>
-                           很早就想搭建自己的博客，买了域名服务器，找了很多模板，看着都挺复杂的T_T
+                            很早就想搭建自己的博客，买了域名服务器，找了很多模板，看着都挺复杂的T_T
                             现在这个是我最喜欢的模板布局，简单大气，看着就很舒服，这次要不是工头说，我应该还是不会尝试去写，所以，还得谢谢他^_^
                             后面会加上数据库的相关功能，慢慢来吧，貌似也没有那么复杂，哈哈
                         </p>
@@ -80,5 +89,5 @@ export default class TopNavigation extends Component{
             </div>
         )
     }
-
 }
+

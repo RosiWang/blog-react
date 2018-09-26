@@ -4,11 +4,18 @@ import DisplayContainer from './compt/DisplayItemContainer'
 import InfoOverviewContainer from './compt/InfoOverviewContainer'
 import GeneralButton from "@/src/compt/GeneralButton";
 import 'whatwg-fetch'
+import { BrowserRouter, Route } from 'react-router-dom'
+import LoginPage from './compt/LoginPage'
+
 
 // const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
 const url = 'http://localhost:3089/';
 
-export default class Greeter extends Component{
+ export default  class HomePage extends Component{
+
+     state={
+         isLogin:false
+     }
 
     componentDidMount(){
         console.log('component did mount');
@@ -23,12 +30,24 @@ export default class Greeter extends Component{
         });
     }
 
-    render() {
-        console.log('greeter start..');
+     loginClick =() =>{
+         console.log('login', this.props);
+         // this.props.history.push('/login')
+         this.setState({isLogin:true});
+
+     }
+
+
+     render() {
+        const {isLogin} = this.state;
+        if(isLogin){
+            return  <BrowserRouter>
+                <Route path to="/app" component={LoginPage}/>
+            </BrowserRouter>
+        }
         return (
             <div style={{background:'#f0f3f2'}} >
-                <TopNavigation />
-
+                <TopNavigation loginClick={this.loginClick}/>
                 <div style={{textAlign:'center',paddingTop:380}}>
                     <DisplayContainer />
 
