@@ -1,17 +1,16 @@
 import React,{Component} from 'react'
-import TopNavigation from './compt/TopNavigation'
-import DisplayContainer from './compt/DisplayItemContainer'
-import InfoOverviewContainer from './compt/InfoOverviewContainer'
-import GeneralButton from "@/src/compt/GeneralButton";
+import TopNavigation from './TopNavigation'
+import DisplayContainer from './DisplayItemContainer'
+import InfoOverviewContainer from './InfoOverviewContainer'
+import GeneralButton from "./GeneralButton";
 import 'whatwg-fetch'
-import { BrowserRouter, Route,Redirect,Switch   } from 'react-router-dom'
-import LoginPage from './compt/LoginPage'
-
+import { withRouter} from 'react-router-dom'
+// import LoginPage from './container/LoginPage'
 
 // const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
 const url = 'http://localhost:3089/';
 
- export default  class HomePage extends Component{
+ class HomePage extends Component{
 
      state={
          isLogin:false
@@ -28,24 +27,21 @@ const url = 'http://localhost:3089/';
         }).then(response => response.json()).then(data =>{
             console.log("get success:",data);
         });
+
+        // console.log('withRouter:',withRouter);
     }
 
      loginClick =() =>{
-         console.log('login', this.props);
-         // this.props.history.push('/login')
-         this.setState({isLogin:true});
+         this.props.history.push('/login');
+         // this.setState({isLogin:true});
+         console.log('history:',this.props.history);
 
      }
 
-
      render() {
-        const {isLogin} = this.state;
-        console.log('login:',isLogin);
-        if(isLogin){
-            return  <BrowserRouter>
-                <Redirect exact path to="users" component={LoginPage}/>
-            </BrowserRouter>
-        }
+        // const {isLogin} = this.state;
+        // console.log('login666666:',this.state.isLogin);
+
         return (
             <div style={{background:'#f0f3f2'}} >
                 <TopNavigation loginClick={this.loginClick}/>
@@ -77,3 +73,4 @@ const url = 'http://localhost:3089/';
     }
 }
 
+export default withRouter(HomePage);

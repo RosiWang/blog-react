@@ -32,8 +32,6 @@ const boxImgStyle = {
 }
 
 export  default class TopNavigation extends Component{
-
-
     constructor(props){
         super(props);
         this.state = {

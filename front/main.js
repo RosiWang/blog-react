@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HomePage from './src/HomePage';
+import App from "@/src/App";
 
 console.log('main start..');
-ReactDOM.render(<HomePage />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

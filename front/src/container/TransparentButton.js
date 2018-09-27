@@ -16,7 +16,7 @@ export default class TransparentButton extends Component{
     }
 
     render(){
-        console.log(this.props.onClick);
+        // console.log(this.props.onClick);
         return(
             <div  style={btnStyle} onClick={this.props.onClick}>
                 <span style={{lineHeight:'30px',color:'#f0f3f2'}}>

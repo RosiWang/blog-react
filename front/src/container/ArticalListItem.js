@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import GeneralButton from "@/src/compt/GeneralButton";
+import GeneralButton from "./GeneralButton";
 
 export default class ArticalListItem extends Component{
 

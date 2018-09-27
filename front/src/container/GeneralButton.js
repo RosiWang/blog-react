@@ -18,7 +18,7 @@ const buttonStyle={
 export default class GeneralButton extends Component{
 
     render(){
-        console.log('label:',this.props.label);
+       // console.log('label:',this.props.label);
         const btnStyle = Object.assign({}, buttonStyle, this.props.style);
         return(
             <div style={btnStyle} onClick={this.props.onClick}>

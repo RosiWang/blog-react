@@ -23,11 +23,7 @@ module.exports = {
         contentBase:path.join(__dirname, 'build'),//本地服务器所加载的页面所在的目录
         inline:true,
         port: 8089,
-        historyApiFallback: {
-            rewrites: [
-                { from: /./, to: '/index.html' }
-            ]
-        },
+        historyApiFallback: true,
         proxy: [
             {
                 context: '*',

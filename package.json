@@ -1,7 +1,7 @@
 {
   "author": "Rosi",
   "license": "ISC",
-  "name": "react-test",
+  "name": "rosi-blog",
   "version": "1.0.0",
   "description": "react base project",
   "main": "webpack.config.js",
