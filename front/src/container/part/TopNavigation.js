@@ -55,7 +55,7 @@ export  default class TopNavigation extends Component{
                 <div style={topImgStyle}>
                     <div style={{float:'right',paddingTop:30,paddingRight:48}}>
                         {
-                            isLogin ? <div > 下午好,{userName}</div> :
+                            isLogin ? <div > 下午好,{userName} </div> :
                                 <TransparentButton label='Login' onClick={this.props.gotoLoginClick} />
                         }
                     </div>
