@@ -1,9 +1,9 @@
 import React,{Component} from 'react'
 import DisplayItem from './DisplayItem'
-import icon1 from '../image/itemIcon/01.png'
-import icon2 from '../image/itemIcon/02.png'
-import icon3 from '../image/itemIcon/03.png'
-import icon4 from '../image/itemIcon/04.png'
+import icon1 from '../../image/itemIcon/01.png'
+import icon2 from '../../image/itemIcon/02.png'
+import icon3 from '../../image/itemIcon/03.png'
+import icon4 from '../../image/itemIcon/04.png'
 
 const containerStyle={
     background:'#fff',

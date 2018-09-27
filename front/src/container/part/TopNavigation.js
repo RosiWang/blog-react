@@ -1,9 +1,9 @@
 
 import React,{Component} from 'react'
-import topImg from '../image/topImg.jpg'
-import GeneralButton from './GeneralButton'
-import boxImg from '../image/pic01.jpg'
-import TransparentButton from './TransparentButton'
+import topImg from '../../image/topImg.jpg'
+import GeneralButton from '../component/GeneralButton'
+import boxImg from '../../image/pic01.jpg'
+import TransparentButton from '../component/TransparentButton'
 
 const topImgStyle = {
     width:'100%',
@@ -48,12 +48,16 @@ export  default class TopNavigation extends Component{
     }
 
     render(){
-
+        const {isLogin,userName} = this.props;
+        console.log('isLogin222:',isLogin);
         return(
             <div >
                 <div style={topImgStyle}>
                     <div style={{float:'right',paddingTop:30,paddingRight:48}}>
-                        <TransparentButton label='站长登录' onClick={this.props.loginClick} />
+                        {
+                            isLogin ? <div > 下午好,{userName}</div> :
+                                <TransparentButton label='Login' onClick={this.props.gotoLoginClick} />
+                        }
                     </div>
                     <div style={topText}>
                         <h2>RosiWorld</h2>

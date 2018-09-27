@@ -1,8 +1,8 @@
 import React,{Component} from 'react'
-import TopNavigation from './TopNavigation'
-import DisplayContainer from './DisplayItemContainer'
-import InfoOverviewContainer from './InfoOverviewContainer'
-import GeneralButton from "./GeneralButton";
+import TopNavigation from './part/TopNavigation'
+import DisplayContainer from './part/DisplayItemContainer'
+import InfoOverviewContainer from './part/InfoOverviewContainer'
+import GeneralButton from "./component/GeneralButton";
 import 'whatwg-fetch'
 import { withRouter} from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
@@ -13,7 +13,8 @@ const url = 'http://localhost:3089/';
  class HomePage extends Component{
 
      state={
-         isLogin:false
+         isLogin:false,
+         userName:''
      }
 
     componentDidMount(){
@@ -27,11 +28,16 @@ const url = 'http://localhost:3089/';
         }).then(response => response.json()).then(data =>{
             console.log("get success:",data);
         });
+        var locationState = this.props.location.state;
+        if(locationState){
+            var {name,password} = locationState;
+            this.setState({isLogin:true,userName:name})
+            console.log('location:',name,password);
+        }
 
-        // console.log('withRouter:',withRouter);
     }
 
-     loginClick =() =>{
+     gotoLoginClick =() =>{
          this.props.history.push('/login');
          // this.setState({isLogin:true});
          console.log('history:',this.props.history);
@@ -41,16 +47,16 @@ const url = 'http://localhost:3089/';
      render() {
         // const {isLogin} = this.state;
         // console.log('login666666:',this.state.isLogin);
-
         return (
             <div style={{background:'#f0f3f2'}} >
-                <TopNavigation loginClick={this.loginClick}/>
+                <TopNavigation isLogin={this.state.isLogin} userName={this.state.userName}
+                               gotoLoginClick={this.gotoLoginClick}/>
                 <div style={{textAlign:'center',paddingTop:380}}>
                     <DisplayContainer />
-
                     <div style={{marginTop:24,marginBottom:24}}>
                         <InfoOverviewContainer/>
                     </div>
+
                     <div style={{background:'#e89980',
                         color:'#fff',
                         paddingTop:24,

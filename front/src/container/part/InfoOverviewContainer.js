@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import ArticalListItem from './ArticalListItem'
-import img1 from '../image/infoImg1.jpg'
-import img2 from '../image/infoImg2.jpg'
+import img1 from '../../image/infoImg1.jpg'
+import img2 from '../../image/infoImg2.jpg'
 
 const infoContainerStyle={
     width:'92%',
