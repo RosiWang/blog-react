@@ -47,16 +47,37 @@ export  default class TopNavigation extends Component{
         console.log('right click');
     }
 
+    getHoursStr = () => {
+        var now = new Date();
+        var hours = now.getHours();
+        if(hours > 12){
+            return '下午';
+        }
+        else{
+            return '上午';
+        }
+    }
+
+
     render(){
         const {isLogin,userName} = this.props;
-        console.log('isLogin222:',isLogin);
+        const hoursStr = this.getHoursStr();
+        const loginStr = `${hoursStr}好,${userName}`;
+        console.log('isLogin:',isLogin,userName);
         return(
             <div >
                 <div style={topImgStyle}>
                     <div style={{float:'right',paddingTop:30,paddingRight:48}}>
                         {
-                            isLogin ? <div > 下午好,{userName} </div> :
-                                <TransparentButton label='Login' onClick={this.props.gotoLoginClick} />
+                            isLogin ? <div>
+                                <div style={{color:'#EAE8F2',fontWeight:'bold'}}>
+                                    {loginStr}
+                                </div>
+                                <div style={{color:'#EAE8F2',fontSize:14,paddingLeft:25,cursor:'pointer'}}
+                                     onClick={this.props.exitLoginHandler}>
+                                    <u>退出</u>
+                                </div>
+                            </div> : <TransparentButton label='Login' onClick={this.props.gotoLoginClick} />
                         }
                     </div>
                     <div style={topText}>

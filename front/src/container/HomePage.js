@@ -10,15 +10,13 @@ import { withRouter} from 'react-router-dom'
 // const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
 const url = 'http://localhost:3089/';
 
- class HomePage extends Component{
-
-     state={
-         isLogin:false,
-         userName:''
-     }
-
+class HomePage extends Component{
+    state={
+        isLogin:false,
+        user:null,
+        loginName:null
+    }
     componentDidMount(){
-        console.log('component did mount');
         fetch(url, {
             method: "GET",
             mode: "cors",
@@ -26,30 +24,43 @@ const url = 'http://localhost:3089/';
                 'Accept':'application/json,text/plain,*/*'
             }
         }).then(response => response.json()).then(data =>{
-            console.log("get success:",data);
+            console.log("get success:",data,data.length);
+            if(data && data.length>0){
+                var user = data[0];
+                this.setState({user});
+            }
         });
+
         var locationState = this.props.location.state;
         if(locationState){
-            var {name,password} = locationState;
-            this.setState({isLogin:true,userName:name})
-            console.log('location:',name,password);
+            this.setState({isLogin:true,loginName:locationState.username});
+            // console.log('location:',username,password);
         }
-
+        console.log('component did mount',locationState);
     }
 
-     gotoLoginClick =() =>{
-         this.props.history.push('/login');
-         // this.setState({isLogin:true});
-         console.log('history:',this.props.history);
+    gotoLoginClick =() =>{
+        const {user}= this.state;
+        var path = {
+            pathname:'/login',
+            state:user
+        }
+        this.props.history.push(path);
+        // this.setState({isLogin:true});
+        console.log('push path:',path,user);
+    }
+    exitLoginHandler =()=>{
+        console.log('退出登录');
+        this.props.location.state = null;
+        this.setState({isLogin:false,loginName:null});
+    }
 
-     }
-
-     render() {
+    render() {
         // const {isLogin} = this.state;
         // console.log('login666666:',this.state.isLogin);
         return (
             <div style={{background:'#f0f3f2'}} >
-                <TopNavigation isLogin={this.state.isLogin} userName={this.state.userName}
+                <TopNavigation isLogin={this.state.isLogin} userName={this.state.loginName} exitLoginHandler={this.exitLoginHandler}
                                gotoLoginClick={this.gotoLoginClick}/>
                 <div style={{textAlign:'center',paddingTop:380}}>
                     <DisplayContainer />

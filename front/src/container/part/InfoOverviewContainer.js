@@ -27,7 +27,7 @@ export default class InfoOverviewContainer extends Component{
 
     render(){
         const {data} = this.state;
-        console.log('data:',data);
+        // console.log('data:',data);
         return(
             <div style={infoContainerStyle}>
                 {

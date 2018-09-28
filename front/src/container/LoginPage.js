@@ -3,6 +3,10 @@ import loginImg from '../image/loginImg.png'
 import {Input,Button} from '@material-ui/core'
 import {withRouter} from 'react-router-dom'
 
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+
 
 const containerStyle= {
     backgroundImage:`url(${loginImg})`,
@@ -24,49 +28,57 @@ const boxDivStyle={backgroundColor:'#fff',
 
  class LoginPage extends Component{
 
+     state={
+         inputUser:{
+             username:'',
+             password:''
+         },
+         sqlUser:null,
+         alertOpen:false
+     }
     componentDidMount(){
         console.log('555555555555555');
-        console.log('666');
+        var locationState = this.props.location.state;
+        this.setState({sqlUser:locationState});
+        console.log('login location state:',locationState);
     }
-    state={
-        user:{
-            name:'',
-            password:''
-        }
-    }
-
     loginClick=()=>{
-        const {user}= this.state;
+        const {inputUser,sqlUser}= this.state;
+        if(!sqlUser || inputUser.username != sqlUser.username || inputUser.password != sqlUser.password){
+           this.setState({alertOpen:true});
+            return;
+        }
         var path = {
             pathname:'/',
-            state:user
+            state:inputUser
         }
-
         this.props.history.push(path);
-        console.log('login6666',user.name,user.password);
+        console.log('login6666',inputUser.username,inputUser.password);
     }
 
+     setOpenState = (open)=>{
+         this.setState({alertOpen:open});
+     }
+
     render(){
-        const inputClass = {
-            width:'80%'
-        }
-        var {user} = this.state;
+
+        var {inputUser,alertOpen} = this.state;
         return(
             <div style={containerStyle}>
                 <div style={boxDivStyle}>
                     <span style={{fontWeight:'bold'}}>____博主登录____</span>
                     <div style={{paddingTop:24}}>
-                      <Input value={user.name} placeholder='user'
+                      <Input value={inputUser.username} placeholder='user'
                              onChange={e=>{
-                                 user.name = e.target.value;
-                                 this.setState({user});
+                                 inputUser.username = e.target.value;
+                                 this.setState({inputUser});
                              }} />
                     </div>
                     <div style={{paddingTop:24}}>
-                        <Input value={user.password} placeholder='password'
+                        <Input value={inputUser.password} type='password' placeholder='password'
                                onChange={e=>{
-                                   user.password = e.target.value;
-                                   this.setState({user});
+                                   inputUser.password = e.target.value;
+                                   this.setState({inputUser});
                                }} />
                     </div>
 
@@ -75,9 +87,44 @@ const boxDivStyle={backgroundColor:'#fff',
                            登录
                        </Button>
                     </div>
+
+                    <SimpleSnackbar open={alertOpen} text='用户名或密码错误！' updateOpenState={this.setOpenState} />
                 </div>
             </div>
         )
+    }
+}
+
+class SimpleSnackbar extends Component {
+    render() {
+        const {open,updateOpenState} = this.props;
+        return (
+            <div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                    open={open}
+                    autoHideDuration={6000}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{this.props.text}</span>}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            onClick={e=>{
+                                updateOpenState(false);
+                            }}>
+                            <CloseIcon />
+                        </IconButton>
+                    ]}
+                />
+            </div>
+        );
     }
 }
 
