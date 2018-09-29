@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import TopNavigation from './part/TopNavigation'
-import DisplayContainer from './part/DiaryItemSection'
+import DiarySection from './part/DiarySection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
 import 'whatwg-fetch'
@@ -10,14 +10,15 @@ import { withRouter} from 'react-router-dom'
 // const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
 const userUrl = 'http://localhost:3089/user';
 
-
 class HomePage extends Component{
+
     state={
         isLogin:false,
         user:null,
         loginName:null,
         diaryListData:null
     }
+
     componentDidMount(){
         this.loadUser();
         var locationState = this.props.location.state;
@@ -25,7 +26,7 @@ class HomePage extends Component{
             this.setState({isLogin:true,loginName:locationState.username});
             // console.log('location:',username,password);
         }
-        console.log('component did mount',locationState);
+        console.log('component did mount---locationState',locationState,locationState.username);
     }
 
     loadUser = ()=>{
@@ -53,16 +54,24 @@ class HomePage extends Component{
         this.props.location.state = null;
         this.setState({isLogin:false,loginName:null});
     }
+    addDairyClick = ()=>{
+        console.log('添加日志');
+        this.props.history.push('/dairy');
+    }
 
     render() {
-        // const {isLogin} = this.state;
-        // console.log('login666666:',this.state.isLogin);
+        const {isLogin} = this.state;
         return (
             <div style={{background:'#f0f3f2'}} >
-                <TopNavigation isLogin={this.state.isLogin} userName={this.state.loginName} exitLoginHandler={this.exitLoginHandler}
+                <TopNavigation isLogin={isLogin} userName={this.state.loginName} exitLoginHandler={this.exitLoginHandler}
                                gotoLoginClick={this.gotoLoginClick}/>
                 <div style={{textAlign:'center',paddingTop:380}}>
-                    <DisplayContainer />
+                    {
+                        isLogin ? <div style={{paddingBottom:24}}>
+                            <GeneralButton label='添加日志' onClick={this.addDairyClick}/>
+                        </div> : null
+                    }
+                    <DiarySection />
                     <div style={{marginTop:24,marginBottom:24}}>
                         <InfoOverviewContainer/>
                     </div>

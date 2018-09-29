@@ -63,7 +63,7 @@ export  default class TopNavigation extends Component{
         const {isLogin,userName} = this.props;
         const hoursStr = this.getHoursStr();
         const loginStr = `${hoursStr}好,${userName}`;
-        console.log('isLogin:',isLogin,userName);
+        console.log('top isLogin:',isLogin,userName);
         return(
             <div >
                 <div style={topImgStyle}>

@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 
-export default class DisplayItem extends Component{
+export default class DiaryItem extends Component{
 
     render(){
         const divBorderDirection = {up:'3px 0 0 0',

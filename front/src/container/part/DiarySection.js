@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import DisplayItem from './DisplayItem'
+import DiaryItem from './DiaryItem'
 import icon1 from '../../image/itemIcon/01.png'
 import icon2 from '../../image/itemIcon/02.png'
 import icon3 from '../../image/itemIcon/03.png'
@@ -18,7 +18,7 @@ const containerStyle={
 }
 const diaryUrl = 'http://localhost:3089/diary';
 
-export default class DisplayContainer extends Component{
+export default class DiarySection extends Component{
 
     state = {
         itemData:[]
@@ -56,7 +56,7 @@ export default class DisplayContainer extends Component{
             {
                 itemData.map((v,k) =>{
                    return(
-                       <DisplayItem key = {k}
+                       <DiaryItem key = {k}
                            icon={v.icon} title={v.title}
                            desc={v.desc} direction={v.direction} />
                    )
