@@ -16,13 +16,31 @@ router.all('*', function(req, res, next) {
 
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/user', function(req, res, next) {
   // res.render('index', { title: 'Express',text:'6666666666' });
     // res.status(200).send({id:req.params.id, name: req.params.password});
     // res.status(404).send('Sorry, we cannot find that!');
     // res.send(req.url);
   console.log('get path /....');
     db.query("select * from admin_db",function(err,rows){
+        if(err){
+            // res.render("users.ejs",{title:"用户列表",datas:[]});
+            console.log('err:',err);
+        }else {
+            // res.render("users.ejs",{title:"用户列表",datas:rows});
+            console.log('data:',rows);
+            res.json(rows);
+        }
+    });
+});
+
+router.get('/diary', function(req, res, next) {
+    // res.render('index', { title: 'Express',text:'6666666666' });
+    // res.status(200).send({id:req.params.id, name: req.params.password});
+    // res.status(404).send('Sorry, we cannot find that!');
+    // res.send(req.url);
+    console.log('get diary ....');
+    db.query("select * from diary_db",function(err,rows){
         if(err){
             // res.render("users.ejs",{title:"用户列表",datas:[]});
             console.log('err:',err);

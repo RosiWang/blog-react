@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import TopNavigation from './part/TopNavigation'
-import DisplayContainer from './part/DisplayItemContainer'
+import DisplayContainer from './part/DiaryItemSection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
 import 'whatwg-fetch'
@@ -8,35 +8,34 @@ import { withRouter} from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
 
 // const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
-const url = 'http://localhost:3089/';
+const userUrl = 'http://localhost:3089/user';
+
 
 class HomePage extends Component{
     state={
         isLogin:false,
         user:null,
-        loginName:null
+        loginName:null,
+        diaryListData:null
     }
     componentDidMount(){
-        fetch(url, {
-            method: "GET",
-            mode: "cors",
-            headers: {
-                'Accept':'application/json,text/plain,*/*'
-            }
-        }).then(response => response.json()).then(data =>{
-            console.log("get success:",data,data.length);
-            if(data && data.length>0){
-                var user = data[0];
-                this.setState({user});
-            }
-        });
-
+        this.loadUser();
         var locationState = this.props.location.state;
         if(locationState){
             this.setState({isLogin:true,loginName:locationState.username});
             // console.log('location:',username,password);
         }
         console.log('component did mount',locationState);
+    }
+
+    loadUser = ()=>{
+        fetch(userUrl).then(response => response.json()).then(data =>{
+            console.log("get success:",data,data.length);
+            if(data && data.length>0){
+                var user = data[0];
+                this.setState({user});
+            }
+        });
     }
 
     gotoLoginClick =() =>{
