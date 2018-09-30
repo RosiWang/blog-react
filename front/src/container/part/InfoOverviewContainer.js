@@ -15,12 +15,12 @@ export default class InfoOverviewContainer extends Component{
             {
                 img:img1,
                 title:'没想好这里放啥',
-                desc:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
+                container:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
             },
             {
                 img:img2,
                 title:'没想好这里放啥',
-                desc:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
+                container:'这里是占位文本--This is my first blog developed by myself. There is no content at the moment. I am very happy behind it. It is a template style that I like. It is quite good to do what I like.'
             }
         ]
     }
@@ -33,7 +33,7 @@ export default class InfoOverviewContainer extends Component{
                 {
                     data.map((v,k) => {
                         return(
-                            <ArticalListItem key={k} img={v.img} title={v.title} desc={v.desc}/>
+                            <ArticalListItem key={k} img={v.img} title={v.title} container={v.container}/>
                         )
                     })
                 }

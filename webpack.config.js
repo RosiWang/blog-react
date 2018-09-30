@@ -53,11 +53,23 @@ module.exports = {
                 }]
             },
             {
+                test: /node_module\/.css$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ],
+            },
+            {
                 test: /\.css$/,
                 use: [
                     {
                         loader: "style-loader"
-                    }, {
+                    },
+                    {
                         loader: "css-loader",
                         options: {
                             modules: true,// 指定启用css modules

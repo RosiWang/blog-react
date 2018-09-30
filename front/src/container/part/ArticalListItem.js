@@ -17,7 +17,7 @@ export default class ArticalListItem extends Component{
                         {this.props.title}
                     </h3>
                     <p>
-                        {this.props.desc}
+                        {this.props.container}
                     </p>
                 </div>
                 <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More'/>

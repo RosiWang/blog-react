@@ -41,8 +41,8 @@ export default class DiarySection extends Component{
                 const direction = ['bottom','left','right','up'];
                 const iconData = [icon1,icon2,icon3,icon4];
                 data.map((v,k)=>{
-                    v.icon=iconData[k];
-                    v.direction = direction[k];
+                    v.icon=iconData[k%4];
+                    v.direction = direction[k%4];
                 });
                 this.setState({itemData:data});
                 console.log("diary::",data);
@@ -58,7 +58,7 @@ export default class DiarySection extends Component{
                    return(
                        <DiaryItem key = {k}
                            icon={v.icon} title={v.title}
-                           desc={v.desc} direction={v.direction} />
+                           container={v.container} direction={v.direction} />
                    )
                 })
             }

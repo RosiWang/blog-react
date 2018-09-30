@@ -25,7 +25,7 @@ export default class DiaryItem extends Component{
                         {this.props.title}
                     </h3>
                     <p>
-                        {this.props.desc}
+                        {this.props.container}
                     </p>
                 </div>
 

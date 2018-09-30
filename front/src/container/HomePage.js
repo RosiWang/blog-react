@@ -26,7 +26,7 @@ class HomePage extends Component{
             this.setState({isLogin:true,loginName:locationState.username});
             // console.log('location:',username,password);
         }
-        console.log('component did mount---locationState',locationState,locationState.username);
+        console.log('component did mount---locationState',locationState);
     }
 
     loadUser = ()=>{
@@ -75,7 +75,6 @@ class HomePage extends Component{
                     <div style={{marginTop:24,marginBottom:24}}>
                         <InfoOverviewContainer/>
                     </div>
-
                     <div style={{background:'#e89980',
                         color:'#fff',
                         paddingTop:24,

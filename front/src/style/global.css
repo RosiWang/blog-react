@@ -3,3 +3,18 @@
     padding: 10px;
     border: 3px solid #ccc;
 }
+
+.MuiInputBase-input-42 {
+    font: inherit;
+    width: 100%;
+    color: currentColor;
+    border: 0;
+    margin: 0;
+    padding: 6px 0 7px;
+    display: block;
+    min-width: 500px;
+    box-sizing: content-box;
+    background: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
