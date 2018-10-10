@@ -15,6 +15,16 @@ router.all('*', function(req, res, next) {
     next();
 });
 
+router.all('/diary/add', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
+
 
 /* GET home page. */
 router.get('/user', function(req, res, next) {
@@ -59,18 +69,17 @@ router.post("/diary/add",function(req,res,next){
     var container = req.body.container;
     //"insert into user(name,age,id) values('"+name+"','"+ age +"','10')"
     const id = diaryLen;
-    console.log('add :',req.body,id,title,container);
+    console.log('add666 :',req.body,id,title,container);
     db.query(`insert into diary_db(id,title,container) values('${id}','${title}','${container}')`,function(err,rows){
         if(err){
             res.send("新增失败"+err);
-            console.log('新增失败');
+            console.log('新增失败',err);
         }else {
-            const rebackData = {code:0}
-            res.json(rebackData);
-            console.log('添加成功！');
+            const rebackData = {code:0,data:{state:'success'}}
+            // res.json(rebackData);
+            res.end(JSON.stringify(rebackData));
+            console.log('添加成功！',rebackData);
         }
     });
 });
-
-
 module.exports = router;

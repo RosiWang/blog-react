@@ -5,6 +5,9 @@ import globalStyle from '../style/global.css'
 import BrightButton from './component/BrightButton'
 import 'whatwg-fetch'
 const submit_url = 'http://localhost:3089/diary/add'
+import Snackbar from '@material-ui/core/Snackbar';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 
 const containerStyle ={backgroundColor:'#fff',
     textAlign:'center',
@@ -17,12 +20,19 @@ class DairyEditPage extends Component{
     state = {
         inputData:{
             title:'',
-            container:'  '
-        }
+            container:''
+        },
+        alertOpen:false,
+        alertText:''
+
     }
 
     submitTextClick = ()=>{
         const {inputData} = this.state;
+        if(inputData.title == '' || inputData.container == '' ){
+            this.setState({alertOpen:true,alertText:'标题或内容不能为空！'});
+            return;
+        }
         console.log('json:',JSON.stringify(inputData));
         fetch(submit_url, {
             method: 'POST',
@@ -31,14 +41,35 @@ class DairyEditPage extends Component{
             },
             body: JSON.stringify(inputData)
         }).then(response => {
-            console.log('submit response:',response);
+            console.log('submit response55555:',response);
+            if(response.status == 200){
+                this.setState({alertOpen:true,alertText:'提交成功！'});
+                var self = this;
+                setTimeout((self)=>{
+                    // self.props.history.push('/');
+                    console.log('延时3秒');
+                },3000);
+            }else{
+                this.setState({alertOpen:true,alertText:'提交失败！'});
+            }
+            // var data = response.json();
+            // console.log(data);
         })
         console.log('提交日志！！！',inputData);
     }
 
+    // gotoHome = ()=>{
+    //     console.log("goto home");
+    //     this.props.history.push('/');
+    // }
+
+    setOpenState = (open)=>{
+        this.setState({alertOpen:open});
+    }
+
     render(){
 
-        var {inputData} = this.state;
+        var {inputData,alertOpen,alertText} = this.state;
         return(
             <div style={containerStyle}>
                 <div style={{paddingTop:24}}>
@@ -66,9 +97,44 @@ class DairyEditPage extends Component{
                 <div style={{textAlign:'center',width:100,margin:'0 auto',paddingTop:24}}>
                     <BrightButton label='提交' onClick={this.submitTextClick}/>
                 </div>
+                <SimpleSnackbar open={alertOpen} text={alertText} updateOpenState={this.setOpenState} />
             </div>
         )
     }
 }
+
+class SimpleSnackbar extends Component {
+    render() {
+        const {open,updateOpenState} = this.props;
+        return (
+            <div>
+                <Snackbar
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
+                    open={open}
+                    autoHideDuration={6000}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={<span id="message-id">{this.props.text}</span>}
+                    action={[
+                        <IconButton
+                            key="close"
+                            aria-label="Close"
+                            color="inherit"
+                            onClick={e=>{
+                                updateOpenState(false);
+                            }}>
+                            <CloseIcon />
+                        </IconButton>
+                    ]}
+                />
+            </div>
+        );
+    }
+}
+
 
 export default withRouter(DairyEditPage)
