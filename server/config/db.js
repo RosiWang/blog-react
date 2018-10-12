@@ -1,9 +1,18 @@
 var mysql = require('mysql');
+
+// var pool = mysql.createPool({
+//     host:'localhost',
+//     user:'root',
+//     password:'123456',
+//     database:'blog',
+//     insecureAuth:true
+// });
+
 var pool = mysql.createPool({
-    host:'localhost',
-    user:'root',
-    password:'123456',
-    database:'blog',
+    host:'sdm455338138.my3w.com',
+    user:'sdm455338138',
+    password:'rosi-8899',
+    database:'sdm455338138_db',
     insecureAuth:true
 });
 function query(sql,options,callback) {
@@ -19,7 +28,5 @@ function query(sql,options,callback) {
             });
         }
     })
-
 }
-
 exports.query = query;

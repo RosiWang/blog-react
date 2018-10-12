@@ -6,7 +6,8 @@ export default class DiaryItem extends Component{
         const divBorderDirection = {up:'3px 0 0 0',
             right:'0 3px 0 0',
             bottom:'0 0 3px 0',
-            left:'0 0 0 3px'};
+            left:'0 0 0 3px',
+            leftUp:'3px 0 0 3px'};
         const {direction} = this.props;
         let lineDirection = divBorderDirection[direction] || 0;
         // console.log('direction:',lineDirection,divBorderDirection[direction]);

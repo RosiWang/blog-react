@@ -4,10 +4,11 @@ import {TextField,Input} from '@material-ui/core';
 import globalStyle from '../style/global.css'
 import BrightButton from './component/BrightButton'
 import 'whatwg-fetch'
-const submit_url = 'http://localhost:3089/diary/add'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+
+const submit_url = 'http://localhost:3089/diary/add'
 
 const containerStyle ={backgroundColor:'#fff',
     textAlign:'center',
@@ -24,7 +25,6 @@ class DairyEditPage extends Component{
         },
         alertOpen:false,
         alertText:''
-
     }
 
     submitTextClick = ()=>{
@@ -44,11 +44,11 @@ class DairyEditPage extends Component{
             console.log('submit response55555:',response);
             if(response.status == 200){
                 this.setState({alertOpen:true,alertText:'提交成功！'});
-                var self = this;
-                setTimeout((self)=>{
-                    // self.props.history.push('/');
-                    console.log('延时3秒');
-                },3000);
+                setTimeout(()=>{
+                    console.log(this);
+                    this.props.history.push('/');
+                    console.log('延时3秒跳转！');
+                },2000);
             }else{
                 this.setState({alertOpen:true,alertText:'提交失败！'});
             }
@@ -57,21 +57,22 @@ class DairyEditPage extends Component{
         })
         console.log('提交日志！！！',inputData);
     }
-
-    // gotoHome = ()=>{
-    //     console.log("goto home");
-    //     this.props.history.push('/');
-    // }
-
     setOpenState = (open)=>{
         this.setState({alertOpen:open});
     }
 
-    render(){
+    backHandler = ()=>{
+        this.props.history.push('/');
+    }
 
+    render(){
         var {inputData,alertOpen,alertText} = this.state;
         return(
             <div style={containerStyle}>
+                <div style={{float:'right',paddingTop:24}}>
+                    <BrightButton style={{width:50}} label='返回' onClick={this.backHandler}/>
+                </div>
+
                 <div style={{paddingTop:24}}>
                     <Input placeholder='日志标题' value={inputData.title} onChange={e=>{
                         inputData.title = e.target.value;
@@ -95,7 +96,7 @@ class DairyEditPage extends Component{
                     />
                 </div>
                 <div style={{textAlign:'center',width:100,margin:'0 auto',paddingTop:24}}>
-                    <BrightButton label='提交' onClick={this.submitTextClick}/>
+                    <BrightButton style={{width:100}} label='提交' onClick={this.submitTextClick}/>
                 </div>
                 <SimpleSnackbar open={alertOpen} text={alertText} updateOpenState={this.setOpenState} />
             </div>
