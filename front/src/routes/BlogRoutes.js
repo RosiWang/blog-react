@@ -3,6 +3,8 @@ import BaseRoutes from './BaseRoutes'
 import HomePage from '../container/HomePage'
 import Login from '../container/LoginPage'
 import DairyEditPage from '../container/DairyEditPage'
+import TestPage from '../container/TestPage'
+
 
 export default class extends BaseRoutes{
     getChildRoutes(){
@@ -10,6 +12,7 @@ export default class extends BaseRoutes{
         return[
             {path:'/login',component:Login},
             {path:'/dairy',component:DairyEditPage},
+            {path:'/test',component:TestPage},
             {path:'/',component:HomePage}
         ]
     }
