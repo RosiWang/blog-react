@@ -7,8 +7,8 @@ import 'whatwg-fetch'
 import { withRouter} from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
 
-// const url='http://arashivision-oa.ce51fc365833e429ab4b48fffd0f4d22b.cn-shenzhen.alicontainer.com/visitor/getAllMembers';
-const userUrl = 'http://localhost:3089/user';
+// const userUrl = 'http://localhost:3089/user';
+const sqlDataUrl = 'http://localhost:81/login.php';
 
 class HomePage extends Component{
 
@@ -21,22 +21,25 @@ class HomePage extends Component{
 
     componentDidMount(){
         this.loadUser();
-        var locationState = this.props.location.state;
-        if(locationState){
-            this.setState({isLogin:true,loginName:locationState.username});
-            // console.log('location:',username,password);
-        }
-        console.log('component did mount---locationState',locationState);
+        // var locationState = this.props.location.state;
+        // if(locationState){
+        //     this.setState({isLogin:true,loginName:locationState.username});
+        //     // console.log('location:',username,password);
+        // }
+        // console.log('component did mount---locationState',locationState);
     }
 
     loadUser = ()=>{
-        fetch(userUrl).then(response => response.json()).then(data =>{
-            console.log("get success:",data,data.length);
-            if(data && data.length>0){
-                var user = data[0];
-                this.setState({user});
-            }
-        });
+        // fetch(userUrl).then(response => response.json()).then(data =>{
+        //     console.log("get success:",data,data.length);
+        //     if(data && data.length>0){
+        //         var user = data[0];
+        //         this.setState({user});
+        //     }
+        // });
+        fetch(sqlDataUrl).then(response => response.json()).then(data=>{
+            console.log('ddddd:',data);
+        })
     }
 
     gotoLoginClick =() =>{

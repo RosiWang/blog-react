@@ -9,14 +9,14 @@ module.exports = {
     mode: 'development',
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'front'),
+            '@': path.resolve(__dirname, 'frontPage'),
         }
     },
     entry:  {
-        bundle:'./front/main.js'//唯一入口文件
+        bundle:'./frontPage/main.js'//唯一入口文件
     },
     output: {
-        path: __dirname + "/build",//打包后的文件存放的地方
+        path: __dirname + "./frontPage/build",//打包后的文件存放的地方
         filename: 'bundle.js'
     },
     devServer: {
@@ -24,14 +24,14 @@ module.exports = {
         inline:true,
         port: 8089,
         historyApiFallback: true,
-        proxy: [
-            {
-                context: '*',
-                target: 'http://localhost:3089/',
-                changeOrigin: true,
-                secure: false
-            }
-        ],
+        // proxy: [
+        //     {
+        //         context: '*',
+        //         target: 'http://localhost/test.php',
+        //         changeOrigin: true,
+        //         secure: false
+        //     }
+        // ],
     },
     module: {
         rules: [
@@ -84,7 +84,7 @@ module.exports = {
         new webpack.BannerPlugin('版权所有，翻版必究666'),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: __dirname + "/front/index.tmpl.html",//new 一个这个插件的实例，并传入相关的参数
+            template: __dirname + "/frontPage/index.tmpl.html",//new 一个这个插件的实例，并传入相关的参数
             inject: false
         })
     ]
