@@ -8,7 +8,7 @@ import { withRouter} from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
 
 // const userUrl = 'http://localhost:3089/user';
-const sqlDataUrl = 'http://localhost:81/login.php';
+const sqlDataUrl = 'http://localhost:81/index/index/sqlTest';
 
 class HomePage extends Component{
 
