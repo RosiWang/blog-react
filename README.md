@@ -10,7 +10,7 @@ http://www.rosiworld.online/
 -------------------------------
 **项目目录说明：**  
 
-*****blog-fe-react 前端代码 *****  
+*****blog-fe-react 前端代码*****  
  frontPage ---- 前端页面  
  server --- 后端数据接口  
  其它 ----- 前端相关配置依赖文件  
