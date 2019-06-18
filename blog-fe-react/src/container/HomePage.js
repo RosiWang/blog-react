@@ -38,7 +38,7 @@ class HomePage extends Component{
         //     }
         // });
         fetch(sqlDataUrl).then(response => response.json()).then(data=>{
-            console.log('ddddd:',data);
+            console.log('user data:',data);
         })
     }
 
@@ -92,8 +92,10 @@ class HomePage extends Component{
                         <span style={{paddingLeft:16}}>
                             <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Search'/>
                       </span>
+                      <div style={{paddingTop:16,fontSize:12}}>
+                            <a href='http://www.beian.miit.gov.cn' target='_blank'> 粤ICP备18067845号-1 </a>
+                        </div>
                     </div>
-
                 </div>
             </div>
         );

@@ -98,13 +98,13 @@ export  default class TopNavigation extends Component{
                         width:'80%',
                         paddingLeft:'10%'}}>
                         <h2 style={{color:'#888690',paddingBottom:16}}>
-                            第一个正式开发的博客
+                           心情随笔
                         </h2>
                         <hr style={{height:1}} color='#d9d7d6'/>
                         <p style={{color:'#a09ea8',paddingTop:24,paddingBottom:24}}>
-                            很早就想搭建自己的博客，买了域名服务器，找了很多模板，看着都挺复杂的T_T
-                            现在这个是我最喜欢的模板布局，简单大气，看着就很舒服，这次要不是工头说，我应该还是不会尝试去写，所以，还得谢谢他^_^
-                            后面会加上数据库的相关功能，慢慢来吧，貌似也没有那么复杂，哈哈
+                        　我想等我们老的时候，回想起今天每一个酸甜苦辣的瞬间，都会淡然的回首一笑。多少的楼台烟雨，多少的辛酸无奈，都会在这回首一笑中随风而逝。
+
+　　                    每一次生命的轮回都是一个花开花落的过程，花开的时候尽情的绽放，花谢的时候才会有一地的缤纷，才会有了无遗憾的青春。
                         </p>
                     </div>
                     <img src={boxImg} style={{width:'100%',height:230,borderRadius:6}} />

@@ -1,0 +1,6 @@
+backup/
+blog-be-thinkphp/
+blog-be-thinkphp/.idea
+blog-be-thinkphp/composer.lock
+blog-be-thinkphp/*.log
+blog-be-thinkphp/thinkphp

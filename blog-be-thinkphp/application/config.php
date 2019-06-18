@@ -15,7 +15,7 @@ return [
     // +----------------------------------------------------------------------
 
     // 应用调试模式
-    'app_debug'              => true,
+    'app_debug'              => false,
     // 应用Trace
     'app_trace'              => false,
     // 应用模式状态
@@ -69,6 +69,8 @@ return [
     'action_suffix'          => '',
     // 自动搜索控制器
     'controller_auto_search' => false,
+    //数据库独立配置
+    'extra_config_list'     => ['database'],
 
     // +----------------------------------------------------------------------
     // | URL设置
@@ -92,6 +94,8 @@ return [
     'route_complete_match'   => false,
     // 路由配置文件（支持配置多个）
     'route_config_file'      => ['route'],
+    // 是否开启路由解析缓存
+    'route_check_cache'      => false,
     // 是否强制使用路由
     'url_route_must'         => false,
     // 域名部署

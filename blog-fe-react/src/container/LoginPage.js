@@ -65,7 +65,7 @@ const boxDivStyle={backgroundColor:'#fff',
         return(
             <div style={containerStyle}>
                 <div style={boxDivStyle}>
-                    <span style={{fontWeight:'bold'}}>____博主登录____</span>
+                    <span style={{fontWeight:'bold'}}>____  小主身份核验  ____</span>
                     <div style={{paddingTop:24}}>
                       <Input value={inputUser.username} placeholder='user'
                              onChange={e=>{
@@ -83,7 +83,7 @@ const boxDivStyle={backgroundColor:'#fff',
 
                     <div style={{paddingTop:40}}>
                        <Button variant="contained" color="default" onClick={this.loginClick}>
-                           登录
+                           点我
                        </Button>
                     </div>
 

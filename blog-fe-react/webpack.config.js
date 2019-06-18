@@ -16,7 +16,7 @@ module.exports = {
         bundle:'./public/main.js'//唯一入口文件
     },
     output: {
-        path: __dirname + "./build",//打包后的文件存放的地方
+        path: path.resolve(__dirname , "./build"),//打包后的文件存放的地方
         filename: 'bundle.js'
     },
     devServer: {
