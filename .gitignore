@@ -4,3 +4,5 @@ blog-be-thinkphp/.idea
 blog-be-thinkphp/composer.lock
 blog-be-thinkphp/*.log
 blog-be-thinkphp/thinkphp
+blog-be-egg/node_modules
+blog-fe-react/node_modules
