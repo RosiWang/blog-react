@@ -11,9 +11,28 @@ module.exports = appInfo => {
    * @type {Egg.EggAppConfig}
    **/
   const config = exports = {};
+  config.cluster = {
+    listen: {
+      path: '',
+      port: 7008,
+      hostname: '0.0.0.0',
+    }
+  };
 
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1565171714731_1742';
+  // 添加 view 配置
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.tpl': 'nunjucks',
+    },
+  };
+
+  config.news = {
+    page_size: 5,
+    serverUrl: 'http://api-operation.insta360.cn/dev/v1/splash/query',
+  };
 
   // add your middleware config here
   config.middleware = [];

@@ -1,0 +1,10 @@
+.news-view{
+   padding: 16px;
+}
+
+.news-view .item{
+    list-style-type:square; 
+    margin:0px;
+    padding:8px;
+    height:15px;
+}
