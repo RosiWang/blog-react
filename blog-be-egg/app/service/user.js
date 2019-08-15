@@ -4,34 +4,62 @@ const Service = require('egg').Service;
 var insertCount = 0;
 
 class UserService extends Service {
-    async find(uid) {
-        const user = await this.app.mysql.get('users', { id: 1 });
+  async query() {
+    const articleData = await this.app.mysql.select('article');
+    let code = articleData ? 0 : -1;
+    return { code, articleData }
+  }
 
-        insertCount++;
-        //   const result = await this.app.mysql.insert('article', { title: 'insert'+insertCount,content:'egg动态插入' }); // 在 post 表中，插入 title 为 Hello World 的记录
+  async insert(title, content) {
+    const result = await this.app.mysql.insert('article', { title: title, content: content });
+    let code = result ? 0 : -1;
+    return { code }
+  }
 
-        const row = {
-            title: 'egg update title',
-        };
+  async delete(id){
+    const result = await this.app.mysql.delete('article', { id});
+    let code = result ? 0 : -1;
+    return { code }
+  }
 
-        const options = {
-            where: {
-              id: 1
-            }
-          };
+  async update(data,id){
+    const row = data;
+    const options = {
+      where: { id}
+    };
+    const result = await this.app.mysql.update('article', row, options);
+    let code = result ? 0 : -1;
+    return { code }
+  }
 
-        const result = await this.app.mysql.update('article',row,options );
-        // const result = await this.app.mysql.delete('article', {
-        //     id: 3,
-        //   });
+  async find(uid) {
+    const user = await this.app.mysql.get('users', { id: 1 });
 
-        //error--ToDo
-        // const result = await this.app.mysql.query('update article set title =(inputsqltest) where id = ?', [2, id]);
+    insertCount++;
+    //  
 
-        const articleData = await this.app.mysql.select('article');
+    const row = {
+      title: 'egg update title',
+    };
 
-        return { user, result, articleData };
-    }
+    const options = {
+      where: {
+        id: 1
+      }
+    };
+
+    const result = await this.app.mysql.update('article', row, options);
+    // const result = await this.app.mysql.delete('article', {
+    //     id: 3,
+    //   });
+
+    //error--ToDo
+    //const result = await this.app.mysql.query('update article set title =(inputsqltest) where id = ?', [2, id]);
+
+    const articleData = await this.app.mysql.select('article');
+
+    return { user, result, articleData };
+  }
 }
 
 module.exports = UserService;
