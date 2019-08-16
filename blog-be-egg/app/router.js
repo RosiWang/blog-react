@@ -8,5 +8,5 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/test', controller.testPage.index);
   router.get('/newspage', controller.news.list);
-  router.get('/mysqldata',controller.user.info);
+  router.get('/user',controller.user.info);
 };
