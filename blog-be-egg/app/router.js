@@ -9,4 +9,5 @@ module.exports = app => {
   router.get('/test', controller.testPage.index);
   router.get('/newspage', controller.news.list);
   router.get('/user',controller.user.info);
+  router.get('/userQuery',controller.user.query);
 };

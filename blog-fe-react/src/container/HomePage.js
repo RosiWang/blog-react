@@ -1,98 +1,99 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import TopNavigation from './part/TopNavigation'
 import DiarySection from './part/DiarySection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
 import 'whatwg-fetch'
-import { withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
 
-// const userUrl = 'http://localhost:3089/user';
-const sqlDataUrl = 'http://localhost:81/index/index/sqlTest';
+const userUrl = 'http://localhost:7008/user';
+const sqlDataUrl = 'http://localhost:7008/test';
 
-class HomePage extends Component{
+class HomePage extends Component {
 
-    state={
-        isLogin:false,
-        user:null,
-        loginName:null,
-        diaryListData:null
+    state = {
+        isLogin: false,
+        user: null,
+        loginName: null,
+        diaryListData: null
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.loadUser();
-        // var locationState = this.props.location.state;
-        // if(locationState){
-        //     this.setState({isLogin:true,loginName:locationState.username});
-        //     // console.log('location:',username,password);
-        // }
+        var locationState = this.props.location.state;
+        if(locationState){
+            this.setState({isLogin:true,loginName:locationState.username});
+            console.log('location:',username,password);
+        }
         // console.log('component did mount---locationState',locationState);
     }
 
-    loadUser = ()=>{
-        // fetch(userUrl).then(response => response.json()).then(data =>{
-        //     console.log("get success:",data,data.length);
-        //     if(data && data.length>0){
-        //         var user = data[0];
-        //         this.setState({user});
-        //     }
-        // });
-        fetch(sqlDataUrl).then(response => response.json()).then(data=>{
-            console.log('user data:',data);
-        })
+    loadUser = () => {
+        fetch(userUrl).then(response => response.json()).then(data => {
+            if (data && data.code == 0) {
+                this.setState({ user: data.user });
+            } else {
+                console.log('用户信息获取失败！');
+            }
+        });
+        // fetch(sqlDataUrl).then(response => response.json()).then(data=>{
+        //     console.log('get data:',data);
+        // })
     }
 
-    gotoLoginClick =() =>{
-        const {user}= this.state;
+    gotoLoginClick = () => {
+        const { user } = this.state;
         var path = {
-            pathname:'/login',
-            state:user
+            pathname: '/login',
+            state: user
         }
         this.props.history.push(path);
         // this.setState({isLogin:true});
-        console.log('push path:',path,user);
+        console.log('push path:', path, user);
     }
-    exitLoginHandler =()=>{
+    exitLoginHandler = () => {
         console.log('退出登录');
         this.props.location.state = null;
-        this.setState({isLogin:false,loginName:null});
+        this.setState({ isLogin: false, loginName: null });
     }
-    addDairyClick = ()=>{
+    addDairyClick = () => {
         console.log('添加日志');
         this.props.history.push('/dairy');
     }
 
     render() {
-        const {isLogin} = this.state;
+        const { isLogin } = this.state;
         return (
-            <div style={{background:'#f0f3f2'}} >
+            <div style={{ background: '#f0f3f2' }} >
                 <TopNavigation isLogin={isLogin} userName={this.state.loginName} exitLoginHandler={this.exitLoginHandler}
-                               gotoLoginClick={this.gotoLoginClick}/>
-                <div style={{textAlign:'center',paddingTop:380}}>
+                    gotoLoginClick={this.gotoLoginClick} />
+                <div style={{ textAlign: 'center', paddingTop: 380 }}>
                     {
-                        isLogin ? <div style={{paddingBottom:24}}>
-                            <GeneralButton label='添加日志' onClick={this.addDairyClick}/>
+                        isLogin ? <div style={{ paddingBottom: 24 }}>
+                            <GeneralButton label='添加日志' onClick={this.addDairyClick} />
                         </div> : null
                     }
                     <DiarySection />
-                    <div style={{marginTop:24,marginBottom:24}}>
-                        <InfoOverviewContainer/>
+                    <div style={{ marginTop: 24, marginBottom: 24 }}>
+                        <InfoOverviewContainer />
                     </div>
-                    <div style={{background:'#e89980',
-                        color:'#fff',
-                        paddingTop:24,
-                        paddingBottom:48,
-                        marginBottom:24
+                    <div style={{
+                        background: '#e89980',
+                        color: '#fff',
+                        paddingTop: 24,
+                        paddingBottom: 48,
+                        marginBottom: 24
                     }}>
-                        <div style={{paddingTop:16}}>
+                        <div style={{ paddingTop: 16 }}>
                             <h2>这里会加上搜索</h2>
                             <p>Nothing, this is a placeholder</p>
                         </div>
-                        <input style={{width:240,height:40}} placeholder="rosiwang@163.com"/>
-                        <span style={{paddingLeft:16}}>
-                            <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Search'/>
-                      </span>
-                      <div style={{paddingTop:16,fontSize:12}}>
+                        <input style={{ width: 240, height: 40 }} placeholder="rosiwang@163.com" />
+                        <span style={{ paddingLeft: 16 }}>
+                            <GeneralButton style={{ border: '3px solid', borderColor: '#eae8f2' }} label='Search' />
+                        </span>
+                        <div style={{ paddingTop: 16, fontSize: 12 }}>
                             <a href='http://www.beian.miit.gov.cn' target='_blank'> 粤ICP备18067845号-1 </a>
                         </div>
                     </div>

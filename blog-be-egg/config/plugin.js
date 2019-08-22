@@ -6,13 +6,17 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
-  nunjucks : {
+  nunjucks: {
     enable: true,
     package: 'egg-view-nunjucks'
   },
-  mysql : {
+  mysql: {
     enable: true,
     package: 'egg-mysql',
+  },
+  cors :{
+    enable: true,
+    package: 'egg-cors'
   }
 };
 
