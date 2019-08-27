@@ -3,9 +3,9 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   async query() {
-    const articleData = await this.app.mysql.select('users');
-    let code = articleData ? 0 : -1;
-    return { code, articleData }
+    const data = await this.app.mysql.select('users');
+    let code = data ? 0 : -1;
+    return { code, data }
   }
 
   // async insert(title, content) {

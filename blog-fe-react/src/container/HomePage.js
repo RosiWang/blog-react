@@ -7,8 +7,7 @@ import 'whatwg-fetch'
 import { withRouter } from 'react-router-dom'
 // import LoginPage from './container/LoginPage'
 
-const userUrl = 'http://localhost:7008/user';
-const sqlDataUrl = 'http://localhost:7008/test';
+const userUrl = 'http://localhost:7002/user';
 
 class HomePage extends Component {
 
@@ -20,26 +19,20 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        this.loadUser();
-        var locationState = this.props.location.state;
-        if(locationState){
-            this.setState({isLogin:true,loginName:locationState.username});
-            console.log('location:',username,password);
-        }
-        // console.log('component did mount---locationState',locationState);
-    }
-
-    loadUser = () => {
-        fetch(userUrl).then(response => response.json()).then(data => {
-            if (data && data.code == 0) {
-                this.setState({ user: data.user });
+        fetch(userUrl).then(response => response.json()).then(res => {
+            console.log('user:', res);
+            if (res && res.code == 0) {
+                this.setState({ user: res.data[0] });
             } else {
                 console.log('用户信息获取失败！');
             }
         });
-        // fetch(sqlDataUrl).then(response => response.json()).then(data=>{
-        //     console.log('get data:',data);
-        // })
+        var locationState = this.props.location.state;
+        if (locationState) {
+            this.setState({ isLogin: true, loginName: locationState.username });
+            console.log('location:', locationState);
+        }
+        // console.log('component did mount---locationState',locationState);
     }
 
     gotoLoginClick = () => {
@@ -48,25 +41,27 @@ class HomePage extends Component {
             pathname: '/login',
             state: user
         }
+        console.log('goto login:', path, user);
         this.props.history.push(path);
-        // this.setState({isLogin:true});
-        console.log('push path:', path, user);
     }
+
     exitLoginHandler = () => {
         console.log('退出登录');
         this.props.location.state = null;
         this.setState({ isLogin: false, loginName: null });
     }
+
     addDairyClick = () => {
-        console.log('添加日志');
+        console.log('添加日志 跳转');
         this.props.history.push('/dairy');
     }
 
     render() {
-        const { isLogin } = this.state;
+        const { isLogin, loginName } = this.state;
         return (
             <div style={{ background: '#f0f3f2' }} >
-                <TopNavigation isLogin={isLogin} userName={this.state.loginName} exitLoginHandler={this.exitLoginHandler}
+                <TopNavigation isLogin={isLogin} userName={loginName}
+                    exitLoginHandler={this.exitLoginHandler}
                     gotoLoginClick={this.gotoLoginClick} />
                 <div style={{ textAlign: 'center', paddingTop: 380 }}>
                     {
