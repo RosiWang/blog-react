@@ -3,11 +3,13 @@ import TopNavigation from './part/TopNavigation'
 import DiarySection from './part/DiarySection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
-import 'whatwg-fetch'
 import { withRouter } from 'react-router-dom'
+// import 'whatwg-fetch'
 // import LoginPage from './container/LoginPage'
-
-const userUrl = 'http://localhost:7002/user';
+// const userUrl = 'http://localhost:7002/user';
+// import request from '../utils/request'
+// import { ApiBase} from '../utils/config'
+import Api from '../service/ServiceApi'
 
 class HomePage extends Component {
 
@@ -19,20 +21,19 @@ class HomePage extends Component {
     }
 
     componentDidMount() {
-        fetch(userUrl).then(response => response.json()).then(res => {
-            console.log('user:', res);
+        Api.userData().then(res => {
+            console.log('res', res);
             if (res && res.code == 0) {
                 this.setState({ user: res.data[0] });
             } else {
                 console.log('用户信息获取失败！');
             }
-        });
+        })
         var locationState = this.props.location.state;
         if (locationState) {
             this.setState({ isLogin: true, loginName: locationState.username });
             console.log('location:', locationState);
         }
-        // console.log('component did mount---locationState',locationState);
     }
 
     gotoLoginClick = () => {

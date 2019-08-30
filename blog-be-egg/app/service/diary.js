@@ -30,7 +30,6 @@ class UserService extends Service {
     let code = result ? 0 : -1;
     return { code }
   }
-
   
 }
 

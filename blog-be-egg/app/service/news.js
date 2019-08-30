@@ -29,6 +29,7 @@ class NewsService extends Service {
         const getData = JSON.parse(data);
         // const newList = { data: [{ app: `${getData.data.list}`, url: '' }, { app: `${page_size}`, url: '' }, { app: `${page_number}`, url: '' }] }
         // return newList.data;
+        console.log('news service');
         return getData.data.list;
     }
 }

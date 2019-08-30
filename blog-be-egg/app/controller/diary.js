@@ -11,7 +11,8 @@ class DiaryController extends Controller {
     // const item = {title:'updateTest',content:'update test desc'}
     // await ctx.service.testPage.update(item,1);
 
-
+    const queryData = this.ctx.query;
+    console.log('queryData');
     const result = await ctx.service.diary.query();
     ctx.body = result;
     // await ctx.render('test/test.nj',{result})
