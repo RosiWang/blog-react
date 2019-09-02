@@ -9,6 +9,5 @@ module.exports = app => {
   router.get('/newspage', controller.news.list);
   router.get('/user',controller.user.info);
   router.get('/diary',controller.diary.index);
-  console.log('router');
-  // router.get('/addDiary',controller.diary.addDiary('add','1111'));
+  // router.get('/addDiary',controller.diary.addDiary('tttt','content555'));
 };
