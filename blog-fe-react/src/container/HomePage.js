@@ -4,11 +4,6 @@ import DiarySection from './part/DiarySection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
 import { withRouter } from 'react-router-dom'
-// import 'whatwg-fetch'
-// import LoginPage from './container/LoginPage'
-// const userUrl = 'http://localhost:7002/user';
-// import request from '../utils/request'
-// import { ApiBase} from '../utils/config'
 import Api from '../service/ServiceApi'
 
 class HomePage extends Component {
@@ -22,7 +17,6 @@ class HomePage extends Component {
 
     componentDidMount() {
         Api.userData().then(res => {
-            console.log('res', res);
             if (res && res.code == 0) {
                 this.setState({ user: res.data[0] });
             } else {
@@ -42,19 +36,16 @@ class HomePage extends Component {
             pathname: '/login',
             state: user
         }
-        console.log('goto login:', path, user);
         this.props.history.push(path);
     }
 
     exitLoginHandler = () => {
-        console.log('退出登录');
         this.props.location.state = null;
         this.setState({ isLogin: false, loginName: null });
     }
 
     addDairyClick = () => {
-        console.log('添加日志 跳转');
-        this.props.history.push('/dairy');
+        this.props.history.push('/diary');
     }
 
     render() {

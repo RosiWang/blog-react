@@ -8,9 +8,10 @@ import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 
-const submit_url = 'http://localhost:3089/diary/add'
+// const submit_url = 'http://localhost:3089/diary/add'
+import Api from '../service/ServiceApi'
 
-const containerStyle = {
+const contentStyle = {
     backgroundColor: '#fff',
     textAlign: 'center',
     width: '100%',
@@ -22,7 +23,7 @@ class DairyEditPage extends Component {
     state = {
         inputData: {
             title: '',
-            container: ''
+            content: ''
         },
         alertOpen: false,
         alertText: ''
@@ -30,33 +31,23 @@ class DairyEditPage extends Component {
 
     submitTextClick = () => {
         const { inputData } = this.state;
-        if (inputData.title == '' || inputData.container == '') {
+        if (inputData.title == '' || inputData.content == '') {
             this.setState({ alertOpen: true, alertText: '标题或内容不能为空！' });
             return;
         }
-        console.log('json:', JSON.stringify(inputData));
-        fetch(submit_url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(inputData)
-        }).then(response => {
-            console.log('submit response55555:', response);
-            if (response.status == 200) {
+        Api.addDiary(inputData).then(res =>{
+            if(res && res.code == 0){
                 this.setState({ alertOpen: true, alertText: '提交成功！' });
                 setTimeout(() => {
                     console.log(this);
                     this.props.history.push('/');
                     console.log('延时3秒跳转！');
                 }, 2000);
-            } else {
+            }else{
                 this.setState({ alertOpen: true, alertText: '提交失败！' });
             }
-            // var data = response.json();
-            // console.log(data);
+            console.log('submit res:',res);
         })
-        console.log('提交日志！！！', inputData);
     }
 
     setOpenState = (open) => {
@@ -70,7 +61,7 @@ class DairyEditPage extends Component {
     render() {
         var { inputData, alertOpen, alertText } = this.state;
         return (
-            <div style={containerStyle}>
+            <div style={contentStyle}>
                 <div style={{ float: 'right', paddingTop: 24 }}>
                     <BrightButton style={{ width: 50 }} label='返回' onClick={this.backHandler} />
                 </div>
@@ -88,11 +79,11 @@ class DairyEditPage extends Component {
                         label="心情随笔"
                         multiline
                         rows="20"
-                        value={inputData.container}
+                        value={inputData.content}
                         margin="normal"
                         variant="outlined"
                         onChange={e => {
-                            inputData.container = e.target.value;
+                            inputData.content = e.target.value;
                             this.setState({ inputData });
                         }}
                     />

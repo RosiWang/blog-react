@@ -11,7 +11,8 @@ export default function request(url, options = {}) {
         newOptions.method === 'PUT' ||
         newOptions.method === 'DELETE'
     ) {
-        if (!(newOptions.body instanceof FormData)) {
+        console.log('post::', newOptions);
+        if (!(newOptions.body  instanceof FormData)) {
             newOptions.headers = {
                 Accept: 'application/json',
                 'Content-Type': 'application/json; charset=utf-8',
@@ -27,7 +28,7 @@ export default function request(url, options = {}) {
         }
     }
 
-    return fetch(url).then(response => {
+    return fetch(url, newOptions).then(response => {
         if ((newOptions.method === 'DELETE' || response.status === 204) && (newOptions.responseType !== 'json')) {
             return response.text();
         }

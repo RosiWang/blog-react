@@ -11,7 +11,7 @@ export default class extends BaseRoutes{
         console.log('blog routes. getChildRoutes...');
         return[
             {path:'/login',component:Login},
-            {path:'/dairy',component:DairyEditPage},
+            {path:'/diary',component:DairyEditPage},
             {path:'/test',component:TestPage},
             {path:'/',component:HomePage}
         ]
