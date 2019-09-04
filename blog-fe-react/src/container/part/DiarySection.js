@@ -34,7 +34,12 @@ export default class DiarySection extends Component {
             if (res && res.code == 0) {
                 const data = res.articleData;
                 if (data.length > 0) {
-                    const direction = ['right', '', 'up', 'leftUp'];
+                    let direction;
+                    if(data.length % 4 == 0){
+                        direction = ['right', '', 'up', 'leftUp'];
+                    }else{
+                        direction = ['', 'left', 'up', 'leftUp'];
+                    }
                     const iconData = [icon1, icon2, icon3, icon4];
                     data.map((v, k) => {
                         v.icon = iconData[k % 4];

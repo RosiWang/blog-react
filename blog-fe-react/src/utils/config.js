@@ -1,7 +1,7 @@
 
 
 export const ApiBase = {
-    localIp: 'http://localhost:7008',
+    localIp: 'http://rosiworld.online:7008',
     serverIp:''
 }
 
