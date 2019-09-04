@@ -33,7 +33,7 @@ export default class InfoOverviewContainer extends Component{
                 {
                     data.map((v,k) => {
                         return(
-                            <ArticalListItem key={k} img={v.img} title={v.title} container={v.container}/>
+                            <ArticalListItem key={k} img={v.img} title={v.title} container={v.container} onClick={(e,k)=>{console.log(k)}}/>
                         )
                     })
                 }

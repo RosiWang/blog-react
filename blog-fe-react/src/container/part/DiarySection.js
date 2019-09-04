@@ -5,18 +5,23 @@ import icon2 from '../../image/itemIcon/02.png'
 import icon3 from '../../image/itemIcon/03.png'
 import icon4 from '../../image/itemIcon/04.png'
 import 'whatwg-fetch'
+import Api from '../../service/ServiceApi'
+import GeneralButton from "../component/GeneralButton";
 
 const containerStyle = {
     background: '#fff',
     margin: '0 auto',
+    marginTop: 24,
     width: '92%',
     left: '5.1%',
     borderRadius: 6,
     display: 'flex',
     justifyContent: 'center',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    paddingBottom:24
 }
-import Api from '../../service/ServiceApi'
+
+const diary_num = 8;
 
 export default class DiarySection extends Component {
 
@@ -35,9 +40,9 @@ export default class DiarySection extends Component {
                 const data = res.articleData;
                 if (data.length > 0) {
                     let direction;
-                    if(data.length % 4 == 0){
+                    if (data.length % 4 == 0) {
                         direction = ['right', '', 'up', 'leftUp'];
-                    }else{
+                    } else {
                         direction = ['', 'left', 'up', 'leftUp'];
                     }
                     const iconData = [icon1, icon2, icon3, icon4];
@@ -48,20 +53,35 @@ export default class DiarySection extends Component {
                     this.setState({ itemData: data });
                 }
             }
-            console.log('diary:',res);
+            console.log('diary:', res);
         })
 
     }
+
+    clickItemHandler = (data) => {
+        console.log('item::', data);
+    }
+
+    moreDiaryHandler = ()=>{
+        console.log('diary more!!');
+    }
+
 
     render() {
         const { itemData } = this.state;
         return (<div style={containerStyle}>
             {
                 itemData.map((v, k) => {
-                    return  <DiaryItem key={k}
-                    icon={v.icon} title={v.title}
-                    container={v.container} direction={v.direction} />
+                    const dom = k < diary_num  ? <DiaryItem key={k}
+                        data={v}
+                        onClick={(data) => this.clickItemHandler(data)} /> : null
+                    return dom;
                 })
+            }
+            {
+                itemData.length > diary_num ? <div style={{marginTop:24}}>
+                   <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.moreDiaryHandler}/>
+                </div> : null
             }
         </div>)
     }

@@ -11,7 +11,7 @@ export default class ArticalListItem extends Component{
                 borderRadius:8,
                 paddingBottom:24
             }}  >
-                <img style={{width:'100%',borderTopLeftRadius:8,borderTopRightRadius:8}} src={this.props.img}/>
+                <img style={{width:'100%',borderTopLeftRadius:8,borderTopRightRadius:8,height:430}} src={this.props.img}/>
                 <div style={{color:'#a09ea8',width:'96%',paddingLeft:'2%'}}>
                     <h3>
                         {this.props.title}
@@ -20,7 +20,7 @@ export default class ArticalListItem extends Component{
                         {this.props.container}
                     </p>
                 </div>
-                <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More'/>
+                <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.props.onClick}/>
             </div>
         )
     }
