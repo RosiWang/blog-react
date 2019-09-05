@@ -24,7 +24,7 @@ module.exports = {
         inline:true,
         port: 8089,
         historyApiFallback: true,
-        host:'192.168.2.130'
+        // host:'192.168.2.130'
         
         // proxy: [
         //     {

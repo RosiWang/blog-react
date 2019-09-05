@@ -18,7 +18,7 @@ const containerStyle = {
     display: 'flex',
     justifyContent: 'center',
     flexWrap: 'wrap',
-    paddingBottom:24
+    paddingBottom: 24
 }
 
 const diary_num = 4;
@@ -59,12 +59,14 @@ export default class DiarySection extends Component {
     }
 
     clickItemHandler = (data) => {
-        console.log('item::', data);
+        const { parentProps } = this.props;
+        console.log('item::', data, parentProps.history);
+        parentProps.history.push({ pathname: 'readdiary', state: { ...data } });
     }
 
     // moreDiaryHandler = ()=>{
     //     console.log('diary more!!');
-       
+
     // }
 
 
@@ -73,15 +75,15 @@ export default class DiarySection extends Component {
         return (<div style={containerStyle}>
             {
                 itemData.map((v, k) => {
-                    const dom = k < diary_num  ? <DiaryItem key={k}
+                    const dom = k < diary_num ? <DiaryItem key={k}
                         data={v}
                         onClick={(data) => this.clickItemHandler(data)} /> : null
                     return dom;
                 })
             }
             {
-                itemData.length > diary_num ? <div style={{marginTop:24}}>
-                   <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.props.gotoDirayList}/>
+                itemData.length > diary_num ? <div style={{ marginTop: 24 }}>
+                    <GeneralButton style={{ border: '3px solid', borderColor: '#eae8f2' }} label='Read More' onClick={this.props.gotoDirayList} />
                 </div> : null
             }
         </div>)

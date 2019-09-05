@@ -71,7 +71,7 @@ class HomePage extends Component {
                                 <GeneralButton label='添加日志' onClick={this.addDairyClick} />
                             </div> : null
                         }
-                        <DiarySection gotoDirayList={this.gotoDirayList} />
+                        <DiarySection parentProps={this.props} gotoDirayList={this.gotoDirayList} />
                         <div style={{ marginTop: 24, marginBottom: 24 }}>
                             <InfoOverviewContainer />
                         </div>
