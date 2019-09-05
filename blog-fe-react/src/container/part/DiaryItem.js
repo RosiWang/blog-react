@@ -38,7 +38,7 @@ export default class DiaryItem extends Component {
                     <div style={{ height: 44, overflow: 'hidden' }}>
                         {data.content}
                     </div>
-                    <div style={{ border: 'rgb(183, 187, 195) 1px solid', width: 68, borderRadius: 2, margin: '0 auto', marginTop: 10 }}
+                    <div style={{ border: 'rgb(183, 187, 195) 1px solid', width: 68, borderRadius: 2, margin: '0 auto', marginTop: 10,cursor: 'pointer' }}
                         onClick={e => { this.props.onClick(data) }}>
                         详阅...
                     </div>

@@ -2,8 +2,8 @@
 import React, { Component } from 'react'
 import topImg from '../../image/topImg.jpg'
 import GeneralButton from '../component/GeneralButton'
-import boxImg from '../../image/pic01.jpg'
 import TransparentButton from '../component/TransparentButton'
+import boxImg from '../../image/pic01.jpg'
 
 const topImgStyle = {
     width: '100%',
@@ -21,15 +21,6 @@ const topText = {
     color: '#fff'
 };
 
-const boxImgStyle = {
-    width: '90%',
-    background: '#fff',
-    margin: '0 auto',
-    left: '5%',
-    borderRadius: 6,
-    position: 'absolute',
-    top: 450
-}
 
 export default class TopNavigation extends Component {
     constructor(props) {
@@ -92,26 +83,35 @@ export default class TopNavigation extends Component {
                         </span>
                     </div>
                 </div>
-                <div style={boxImgStyle}>
-                    <div style={{
-                        textAlign: 'center',
-                        paddingTop: 32,
-                        width: '80%',
-                        paddingLeft: '10%'
+
+                <div style={{
+                        background: '#fff',
+                        borderRadius: 6,
+                        position: 'relative',
+                        top: -154,
+                        width: '92%',
+                        left: '4%',
                     }}>
-                        <h2 style={{ color: '#888690', paddingBottom: 16 }}>
-                            心情随笔
+                        <div style={{
+                            textAlign: 'center',
+                            paddingTop: 32,
+                            width: '80%',
+                            paddingLeft: '10%'
+                        }}>
+                            <h2 style={{ color: '#888690', paddingBottom: 16 }}>
+                                心情随笔
                         </h2>
-                        <hr style={{ height: 1 }} color='#d9d7d6' />
-                        <div style={{ color: '#a09ea8', paddingTop: 24, paddingBottom: 24 }}>
-                            我想等我们老的时候，回想起今天每一个酸甜苦辣的瞬间，都会淡然的回首一笑。多少的楼台烟雨，多少的辛酸无奈，都会在这回首一笑中随风而逝。
-                         每一次生命的轮回都是一个花开花落的过程，花开的时候尽情的绽放，花谢的时候才会有一地的缤纷，才会有了无遗憾的青春。
+                            <hr style={{ height: 1 }} color='#d9d7d6' />
+                            <div style={{ color: '#a09ea8', paddingTop: 24, paddingBottom: 24 }}>
+                                我想等我们老的时候，回想起今天每一个酸甜苦辣的瞬间，都会淡然的回首一笑。多少的楼台烟雨，多少的辛酸无奈，都会在这回首一笑中随风而逝。
+                             每一次生命的轮回都是一个花开花落的过程，花开的时候尽情的绽放，花谢的时候才会有一地的缤纷，才会有了无遗憾的青春。
+                        </div>
+                        </div>
+                        <div style={{ background: '#f0f3f2' }}>
+                            <img src={boxImg} style={{ width: '100%', borderRadius: 6 }} />
                         </div>
                     </div>
-                    <div style={{background: '#f0f3f2'}}>
-                        <img src={boxImg} style={{ width: '100%',  borderRadius: 6 }} />
-                    </div>
-                </div>
+              
             </div>
         )
     }

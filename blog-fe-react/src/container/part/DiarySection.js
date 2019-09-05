@@ -21,7 +21,7 @@ const containerStyle = {
     paddingBottom:24
 }
 
-const diary_num = 8;
+const diary_num = 4;
 
 export default class DiarySection extends Component {
 
@@ -62,9 +62,10 @@ export default class DiarySection extends Component {
         console.log('item::', data);
     }
 
-    moreDiaryHandler = ()=>{
-        console.log('diary more!!');
-    }
+    // moreDiaryHandler = ()=>{
+    //     console.log('diary more!!');
+       
+    // }
 
 
     render() {
@@ -80,7 +81,7 @@ export default class DiarySection extends Component {
             }
             {
                 itemData.length > diary_num ? <div style={{marginTop:24}}>
-                   <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.moreDiaryHandler}/>
+                   <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.props.gotoDirayList}/>
                 </div> : null
             }
         </div>)

@@ -1,26 +1,29 @@
-import React,{Component} from 'react'
+import React, { Component } from 'react'
 import GeneralButton from "../component/GeneralButton";
 
-export default class ArticalListItem extends Component{
+export default class ArticalListItem extends Component {
 
-    render(){
-        return(
+    render() {
+        const { data,onClick } = this.props;
+        return (
             <div style={{
-                background:'#ffffff',
-                marginBottom:24,
-                borderRadius:8,
-                paddingBottom:24
+                background: '#ffffff',
+                marginBottom: 24,
+                borderRadius: 8,
+                paddingBottom: 24
             }}  >
-                <img style={{width:'100%',borderTopLeftRadius:8,borderTopRightRadius:8,height:430}} src={this.props.img}/>
-                <div style={{color:'#a09ea8',width:'96%',paddingLeft:'2%'}}>
+                <img style={{ width: '100%', borderTopLeftRadius: 8, borderTopRightRadius: 8, height: 430 }} src={data.img} />
+                <div style={{ color: '#a09ea8', width: '96%', paddingLeft: '2%' }}>
                     <h3>
-                        {this.props.title}
+                        {data.title}
                     </h3>
                     <p>
-                        {this.props.container}
+                        {data.content}
                     </p>
                 </div>
-                <GeneralButton style={{ border: '3px solid',borderColor:'#eae8f2'}} label='Read More' onClick={this.props.onClick}/>
+                <GeneralButton style={{ border: '3px solid', borderColor: '#eae8f2' }}
+                    label='详阅...'
+                    onClick={() => onClick(data.index)} />
             </div>
         )
     }
