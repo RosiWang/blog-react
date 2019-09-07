@@ -30,10 +30,16 @@ class UserService extends Service {
     return { code }
   }
 
+  async checkUser(username,password) {
+    const result = await this.app.mysql.get('users', { username,password });
+    let code = result ? 0 : -1;
+    return { code, user: result };
+  }
+
   async find(id) {
     const result = await this.app.mysql.get('users', { id });
     let code = result ? 0 : -1;
-    return { code,user:result };
+    return { code, user: result };
   }
 }
 

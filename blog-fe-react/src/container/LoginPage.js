@@ -6,6 +6,8 @@ import { withRouter } from 'react-router-dom'
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Api from '../service/user'
+import Cookies from 'js-cookie'
 
 const containerStyle = {
     backgroundImage: `url(${loginImg})`,
@@ -33,29 +35,37 @@ class LoginPage extends Component {
             username: '',
             password: ''
         },
-        sqlUser: null,
         alertOpen: false
     }
 
     componentDidMount() {
-        var locationState = this.props.location.state;
-        this.setState({ sqlUser: locationState });
-        console.log('login location state:', locationState);
+        // Api.user().then(res => {
+        //     if (res && res.code == 0) {
+        //        
+        //     } else {
+        //         console.log('用户信息获取失败！');
+        //     }
+        // })
     }
 
     loginClick = () => {
-        const { inputUser, sqlUser } = this.state;
-        console.log('比对：',inputUser,sqlUser,!sqlUser , inputUser.username , sqlUser.username , inputUser.password , sqlUser.password);
-        if (!sqlUser || inputUser.username != sqlUser.username || inputUser.password != sqlUser.password) {
+        const { inputUser } = this.state;
+        if (!inputUser.username || !inputUser.password) {
             this.setState({ alertOpen: true });
             return;
         }
-        var path = {
-            pathname: '/',
-            state: inputUser
-        }
-        this.props.history.push(path);
-        console.log('login6666', inputUser.username, inputUser.password);
+        const checkData = { ...inputUser };
+        Api.login(checkData).then(res => {
+            if (res && res.code == 0) {
+                // this.props.history.push({ pathname: '/', state: inputUser });
+                Cookies.set('username',inputUser.username);
+            } else {
+                this.setOpenState(true);
+                console.log('登录失败！');
+            }
+            console.log('login:', res);
+        })
+
     }
 
     setOpenState = (open) => {

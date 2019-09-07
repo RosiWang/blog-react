@@ -10,6 +10,10 @@ class DiaryList extends Component {
 
     componentDidMount() {
         console.log('DiaryList...', this.props.location);
+        this.loadList();
+    }
+
+    loadList = () => {
         Api.diary().then(res => {
             if (res && res.code == 0) {
                 console.log(res);
@@ -19,7 +23,29 @@ class DiaryList extends Component {
     }
 
     openDiaryHandler = (data) => {
-        this.props.history.push({ pathname: 'readdiary', state: { ...data } })
+        this.props.history.push({ pathname: 'readdiary', state: { ...data } });
+    }
+
+    deleteDiary = (id) => {
+        Api.deleteDiary(id).then(res => {
+            if (res && res.code == 0) {
+                this.loadList();
+            } else {
+                console.log('删除失败');
+            }
+        })
+    }
+
+    updateDiary = (data) => {
+        // Api.updateDiary(data).then(res => {
+        //     console.log(res);
+        //     if (res && res.code == 0) {
+        //         this.loadList();
+        //     } else {
+        //         console.log('修改失败');
+        //     }
+        // })
+        this.props.history.push({pathname:'/diary',state:data});
     }
 
 
@@ -57,12 +83,15 @@ class DiaryList extends Component {
                                     {v.content}
                                 </div>
 
-                                <div style={{ textAlign: 'right' ,marginTop:10}}>
+                                <div style={{ textAlign: 'right', marginTop: 10 }}>
                                     <div style={{ padding: 10, display: 'inline-block', cursor: 'pointer' }}
                                         onClick={() => { this.openDiaryHandler(v) }}>
                                         更多... </div>
                                     <div style={{ padding: 10, display: 'inline-block', cursor: 'pointer', paddingRight: 23 }}
-                                        onClick={() => { console.log(v.id) }}>
+                                        onClick={() => this.updateDiary(v)}>
+                                        修改</div>
+                                    <div style={{ padding: 10, display: 'inline-block', cursor: 'pointer', paddingRight: 23 }}
+                                        onClick={() => this.deleteDiary(v.id)}>
                                         删除</div>
                                 </div>
                             </div>

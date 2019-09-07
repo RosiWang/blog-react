@@ -7,12 +7,7 @@ class DiaryController extends Controller {
 
   async index() {
     const { ctx } = this;
-
-    // const item = {title:'updateTest',content:'update test desc'}
-    // await ctx.service.testPage.update(item,1);
-
-    const queryData = this.ctx.query;
-    console.log('queryData');
+    console.log('diary index...');
     const result = await ctx.service.diary.query();
     ctx.body = result;
     // await ctx.render('test/test.nj',{result})
@@ -24,22 +19,21 @@ class DiaryController extends Controller {
     // console.log(ctx.params,ctx.params.title);
     // console.log('addDiary',ctx.request.body);
     const data = ctx.request.body;
-    await ctx.service.diary.insert(data.title, data.content);
-    const result = await ctx.service.diary.query();
+    const result = await ctx.service.diary.insert(data.title, data.content);
     ctx.body = result;
   }
 
-  async deleteDiary(id){
+  async deleteDiary() {
     const { ctx } = this;
-    await ctx.service.diary.delete(id);
-    const result = await ctx.service.diary.query();
+    const data = ctx.request.body
+    const result = await ctx.service.diary.delete(data.id);
     ctx.body = result;
   }
 
-  async updateDiary(itemData,id){
+  async updateDiary() {
     const { ctx } = this;
-    await ctx.service.diary.update(itemData,id);
-    const result = await ctx.service.diary.query();
+    const data = ctx.request.body;
+    const result = await ctx.service.diary.update(data);
     ctx.body = result;
   }
 

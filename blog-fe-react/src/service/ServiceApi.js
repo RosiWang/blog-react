@@ -3,16 +3,25 @@ import request from '../utils/request'
 import { ApiBase } from '../utils/config'
 
 export default {
-    userData() {
-        return request(ApiBase.localIp + `/user`);
+    diary() {
+        return request(ApiBase.server + '/diary');
     },
     addDiary(data) {
-        return request(ApiBase.localIp + `/addDiary`, {
+        return request(ApiBase.server + `/addDiary`, {
             method: 'POST',
             body: data
         });
     },
-    diary() {
-        return request(ApiBase.localIp + '/diary');
+    deleteDiary(id) {
+        return request(ApiBase.server + `/deleteDiary`, {
+            method: 'DELETE',
+            body: { id }
+        });
+    },
+    updateDiary(data) {
+        return request(ApiBase.server + '/updateDiary', {
+            method: 'PUT',
+            body: data
+        })
     }
 }

@@ -26,28 +26,58 @@ class DairyEditPage extends Component {
             content: ''
         },
         alertOpen: false,
-        alertText: ''
+        alertText: '',
+        isEdit: false
+    }
+
+    componentDidMount() {
+        const isEdit = this.props.location.state ? true : false;
+        if (isEdit) {
+            const inputData = this.props.location.state;
+            this.setState({ inputData, isEdit });
+        } else {
+            this.setState({ isEdit });
+        }
     }
 
     submitTextClick = () => {
-        const { inputData } = this.state;
+        const { inputData, isEdit } = this.state;
         if (inputData.title == '' || inputData.content == '') {
             this.setState({ alertOpen: true, alertText: '标题或内容不能为空！' });
             return;
         }
-        Api.addDiary(inputData).then(res =>{
-            if(res && res.code == 0){
-                this.setState({ alertOpen: true, alertText: '提交成功！' });
-                setTimeout(() => {
-                    console.log(this);
-                    this.props.history.push('/');
-                    console.log('延时3秒跳转！');
-                }, 2000);
-            }else{
-                this.setState({ alertOpen: true, alertText: '提交失败！' });
-            }
-            console.log('submit res:',res);
-        })
+        if (isEdit) {
+            Api.updateDiary(inputData).then(res => {
+                if (res && res.code == 0) {
+                    this.setState({ alertOpen: true, alertText: '修改成功！' });
+                    setTimeout(() => {
+                        console.log(this);
+                        this.props.history.push('/');
+                        console.log('延时3秒跳转！');
+                    }, 2000);
+                } else {
+                    this.setState({ alertOpen: true, alertText: '提交失败！' });
+                }
+                console.log('edit submit res:', res);
+            })
+
+        } else {
+
+            Api.addDiary(inputData).then(res => {
+                if (res && res.code == 0) {
+                    this.setState({ alertOpen: true, alertText: '提交成功！' });
+                    setTimeout(() => {
+                        console.log(this);
+                        this.props.history.push('/');
+                        console.log('延时3秒跳转！');
+                    }, 2000);
+                } else {
+                    this.setState({ alertOpen: true, alertText: '提交失败！' });
+                }
+                console.log('edd submit res:', res);
+            })
+        }
+
     }
 
     setOpenState = (open) => {

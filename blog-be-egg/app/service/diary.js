@@ -21,10 +21,11 @@ class UserService extends Service {
     return { code }
   }
 
-  async update(data,id){
+  async update(data){
     const row = data;
+    const id = data.id;
     const options = {
-      where: { id}
+      where: {id}
     };
     const result = await this.app.mysql.update(db_name, row, options);
     let code = result ? 0 : -1;

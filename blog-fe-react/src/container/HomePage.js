@@ -11,33 +11,20 @@ class HomePage extends Component {
 
     state = {
         isLogin: false,
-        user: null,
         loginName: null,
         diaryListData: null
     }
 
     componentDidMount() {
-        Api.userData().then(res => {
-            if (res && res.code == 0) {
-                this.setState({ user: res.data[0] });
-            } else {
-                console.log('用户信息获取失败！');
-            }
-        })
-        var locationState = this.props.location.state;
-        if (locationState) {
-            this.setState({ isLogin: true, loginName: locationState.username });
-            console.log('location:', locationState);
+        var routerState = this.props.location.state;
+        if (routerState) {
+            // this.setState({ isLogin: true, loginName: routerState.username });
+            console.log('home router state:', routerState);
         }
     }
 
     gotoLoginClick = () => {
-        const { user } = this.state;
-        var path = {
-            pathname: '/login',
-            state: user
-        }
-        this.props.history.push(path);
+        this.props.history.push('/login');
     }
 
     exitLoginHandler = () => {
