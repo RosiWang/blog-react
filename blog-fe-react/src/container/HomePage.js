@@ -4,22 +4,20 @@ import DiarySection from './part/DiarySection'
 import InfoOverviewContainer from './part/InfoOverviewContainer'
 import GeneralButton from "./component/GeneralButton";
 import { withRouter } from 'react-router-dom'
-import Api from '../service/ServiceApi'
-
+import Cookies from 'js-cookie'
 
 class HomePage extends Component {
 
     state = {
         isLogin: false,
-        loginName: null,
+        username: null,
         diaryListData: null
     }
 
     componentDidMount() {
-        var routerState = this.props.location.state;
-        if (routerState) {
-            // this.setState({ isLogin: true, loginName: routerState.username });
-            console.log('home router state:', routerState);
+        const username = Cookies.get('username');
+        if (username) {
+            this.setState({ isLogin: true, username });
         }
     }
 
@@ -29,7 +27,8 @@ class HomePage extends Component {
 
     exitLoginHandler = () => {
         this.props.location.state = null;
-        this.setState({ isLogin: false, loginName: null });
+        Cookies.remove('username');
+        this.setState({ isLogin: false, username: null });
     }
 
     addDairyClick = () => {
@@ -42,11 +41,11 @@ class HomePage extends Component {
     }
 
     render() {
-        const { isLogin, loginName } = this.state;
+        const { isLogin, username } = this.state;
         return (
             <div style={{ background: '#f0f3f2', position: 'absolute', width: '100%' }}>
                 {/* 顶部简略图文展示 */}
-                <TopNavigation isLogin={isLogin} userName={loginName}
+                <TopNavigation isLogin={isLogin} userName={username}
                     exitLoginHandler={this.exitLoginHandler}
                     gotoLoginClick={this.gotoLoginClick} />
                 <div >

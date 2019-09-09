@@ -57,8 +57,8 @@ class LoginPage extends Component {
         const checkData = { ...inputUser };
         Api.login(checkData).then(res => {
             if (res && res.code == 0) {
-                // this.props.history.push({ pathname: '/', state: inputUser });
-                Cookies.set('username',inputUser.username);
+                Cookies.set('username', inputUser.username);
+                this.props.history.push('/');
             } else {
                 this.setOpenState(true);
                 console.log('登录失败！');

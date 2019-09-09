@@ -7,7 +7,7 @@ export default {
         return request(ApiBase.server + '/user');
     },
     login(data) {
-        return request(ApiBase.local + `/login`, {
+        return request(ApiBase.server + `/login`, {
             method: 'POST',
             body: data,
             withCredentials:true
