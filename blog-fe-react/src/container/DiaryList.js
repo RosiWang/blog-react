@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Api from '../service/ServiceApi'
 import Cookies from 'js-cookie'
+// import { message } from 'antd';
 
 class DiaryList extends Component {
 
@@ -20,7 +21,6 @@ class DiaryList extends Component {
     loadList = () => {
         Api.diary().then(res => {
             if (res && res.code == 0) {
-                console.log(res);
                 this.setState({ list: res.articleData });
             }
         })
@@ -32,23 +32,17 @@ class DiaryList extends Component {
 
     deleteDiary = (id) => {
         Api.deleteDiary(id).then(res => {
-            if (res && res.code == 0) {
+            console.log(res.code == 0,res);
+            if (res && res.code == '0') {
                 this.loadList();
+            //   message.success({ content: '删除成功!', key, duration: 2 });
             } else {
-                console.log('删除失败');
+                // message.error({content:'删除失败'});
             }
         })
     }
 
     updateDiary = (data) => {
-        // Api.updateDiary(data).then(res => {
-        //     console.log(res);
-        //     if (res && res.code == 0) {
-        //         this.loadList();
-        //     } else {
-        //         console.log('修改失败');
-        //     }
-        // })
         this.props.history.push({ pathname: '/diary', state: data });
     }
 
@@ -92,7 +86,7 @@ class DiaryList extends Component {
                                         onClick={() => { this.openDiaryHandler(v) }}>
                                         更多... </div>
                                     {
-                                        isLogin ? <div style={{display:'inline-block'}}>
+                                        isLogin ? <div style={{ display: 'inline-block' }}>
                                             <div style={{ padding: 10, display: 'inline-block', cursor: 'pointer', paddingRight: 23 }}
                                                 onClick={() => this.updateDiary(v)}>
                                                 修改</div>

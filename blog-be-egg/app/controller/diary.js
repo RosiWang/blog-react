@@ -19,7 +19,10 @@ class DiaryController extends Controller {
     // console.log(ctx.params,ctx.params.title);
     // console.log('addDiary',ctx.request.body);
     const data = ctx.request.body;
-    const result = await ctx.service.diary.insert(data.title, data.content);
+    const date = new Date();
+    const createDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    data.create_time = createDate;
+    const result = await ctx.service.diary.insert(data.title, data.content,data.create_time);
     ctx.body = result;
   }
 

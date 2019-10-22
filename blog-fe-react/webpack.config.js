@@ -55,13 +55,16 @@ module.exports = {
                 }]
             },
             {
-                test: /node_module\/.css$/,
+                test: /node_module\/.(css|less)$/,
                 use: [
                     {
                         loader: "style-loader"
                     },
                     {
                         loader: "css-loader"
+                    },
+                    {
+                        loader:'less-loader'
                     }
                 ],
             },

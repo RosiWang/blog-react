@@ -46,35 +46,25 @@ class DairyEditPage extends Component {
             this.setState({ alertOpen: true, alertText: '标题或内容不能为空！' });
             return;
         }
-        if (isEdit) {
-            Api.updateDiary(inputData).then(res => {
-                if (res && res.code == 0) {
-                    this.setState({ alertOpen: true, alertText: '修改成功！' });
-                    setTimeout(() => {
-                        console.log(this);
-                        this.props.history.push('/');
-                        console.log('延时3秒跳转！');
-                    }, 2000);
-                } else {
-                    this.setState({ alertOpen: true, alertText: '提交失败！' });
-                }
-                console.log('edit submit res:', res);
-            })
-
-        } else {
-
+       
+        if (!isEdit) {
             Api.addDiary(inputData).then(res => {
                 if (res && res.code == 0) {
                     this.setState({ alertOpen: true, alertText: '提交成功！' });
-                    setTimeout(() => {
-                        console.log(this);
-                        this.props.history.push('/');
-                        console.log('延时3秒跳转！');
-                    }, 2000);
+                    //this.props.history.push('/');
                 } else {
                     this.setState({ alertOpen: true, alertText: '提交失败！' });
                 }
                 console.log('edd submit res:', res);
+            })
+        } else {
+            Api.updateDiary(inputData).then(res => {
+                if (res && res.code == 0) {
+                    this.setState({ alertOpen: true, alertText: '修改成功！' });
+                } else {
+                    this.setState({ alertOpen: true, alertText: '提交失败！' });
+                }
+                console.log('edit submit res:', res);
             })
         }
 
@@ -97,10 +87,13 @@ class DairyEditPage extends Component {
                 </div>
 
                 <div style={{ paddingTop: 24 }}>
-                    <Input placeholder='日志标题' value={inputData.title} onChange={e => {
-                        inputData.title = e.target.value;
-                        this.setState({ inputData });
-                    }} />
+                    <input style={{ border: 'none', textAlign: 'center', borderBottom: '1px solid rgb(185, 178, 178)', fontSize: 16 }}
+                        placeholder='日志标题'
+                        value={inputData.title}
+                        onChange={e => {
+                            inputData.title = e.target.value;
+                            this.setState({ inputData });
+                        }} />
                 </div>
                 <div style={{ paddingTop: 24, width: '100%' }}>
                     <TextField

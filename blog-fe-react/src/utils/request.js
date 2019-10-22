@@ -29,7 +29,8 @@ export default function request(url, options = {}) {
     }
 
     return fetch(url, newOptions).then(response => {
-        if ((newOptions.method === 'DELETE' || response.status === 204) && (newOptions.responseType !== 'json')) {
+        //newOptions.method === 'DELETE' 
+        if ((response.status === 204) && (newOptions.responseType !== 'json')) {
             return response.text();
         }
         return response.json();
