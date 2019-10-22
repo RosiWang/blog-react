@@ -48,7 +48,16 @@ class LoginPage extends Component {
         // })
     }
 
+    
+    setOpenState = (open) => {
+        this.setState({ alertOpen: open });
+    }
+
     loginClick = () => {
+       this.login();
+    }
+
+    login = ()=>{
         const { inputUser } = this.state;
         if (!inputUser.username || !inputUser.password) {
             this.setState({ alertOpen: true });
@@ -57,8 +66,8 @@ class LoginPage extends Component {
         const checkData = { ...inputUser };
         Api.login(checkData).then(res => {
             if (res && res.code == 0) {
-                // this.props.history.push({ pathname: '/', state: inputUser });
                 Cookies.set('username',inputUser.username);
+                this.props.history.push({ pathname: '/', state: inputUser });
             } else {
                 this.setOpenState(true);
                 console.log('登录失败！');
@@ -68,8 +77,10 @@ class LoginPage extends Component {
 
     }
 
-    setOpenState = (open) => {
-        this.setState({ alertOpen: open });
+    inputKeyUp = (e)=>{
+        if(e.keyCode == 13){
+            this.login();
+        }
     }
 
     render() {
@@ -88,6 +99,7 @@ class LoginPage extends Component {
                     </div>
                     <div style={{ paddingTop: 24 }}>
                         <Input value={inputUser.password} type='password' placeholder='password'
+                            onKeyUp={e=>{this.inputKeyUp(e)}}
                             onChange={e => {
                                 inputUser.password = e.target.value;
                                 this.setState({ inputUser });
