@@ -32,12 +32,12 @@ class DiaryList extends Component {
 
     deleteDiary = (id) => {
         Api.deleteDiary(id).then(res => {
-            console.log(res.code == 0,res);
+            console.log(res.code == 0, res);
             if (res && res.code == '0') {
                 this.loadList();
-            //   message.success({ content: '删除成功!', key, duration: 2 });
+                alert('删除成功！');
             } else {
-                // message.error({content:'删除失败'});
+                alert('删除失败！');
             }
         })
     }

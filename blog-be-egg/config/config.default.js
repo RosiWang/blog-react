@@ -29,10 +29,10 @@ module.exports = appInfo => {
     },
   };
 
-  config.news = {
-    page_size: 5,
-    serverUrl: 'http://api-operation.insta360.cn/dev/v1/splash/query',
-  };
+  // config.news = {
+  //   page_size: 5,
+  //   serverUrl: 'http://api-operation.insta360.cn/dev/v1/splash/query',
+  // };
 
   config.mysql = {
     // 单数据库信息配置
